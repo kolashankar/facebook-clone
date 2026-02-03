@@ -38,11 +38,15 @@ const Navbar = () => {
 
       {/* Right: Actions */}
       <div className="flex items-center gap-2 md:gap-3">
-        <div className="md:hidden">
+        <Link to="/menu" className="md:hidden">
             <Menu className="w-6 h-6" />
-        </div>
-        <ActionIcon icon={<Grid size={20} />} />
-        <ActionIcon icon={<MessageCircle size={20} />} />
+        </Link>
+        <Link to="/menu" className="hidden md:flex">
+             <ActionIcon icon={<Grid size={20} />} />
+        </Link>
+        <Link to="/messages">
+            <ActionIcon icon={<MessageCircle size={20} />} />
+        </Link>
         <ActionIcon icon={<Bell size={20} />} />
         
         <Link to="/profile" className="relative">
