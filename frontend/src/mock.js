@@ -137,6 +137,35 @@ export const managedPages = [
     { id: 2, name: "Mumbai Tech Meetups", category: "Community", likes: 5400, img: "https://picsum.photos/200/200?random=61" },
 ];
 
+export const chats = [
+    { id: 1, name: "Rahul Sharma", lastMsg: "See you tomorrow! 👋", time: "10:30 AM", unread: true, img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=60" },
+    { id: 2, name: "Priya Singh", lastMsg: "Did you check the PR?", time: "Yesterday", unread: false, img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=60" },
+    { id: 3, name: "Amit Patel", lastMsg: "The meeting is rescheduled.", time: "Mon", unread: false, img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=60" },
+    { id: 4, name: "Sneha Gupta", lastMsg: "Thanks for the help!", time: "Sun", unread: true, img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&auto=format&fit=crop&q=60" },
+    { id: 5, name: "Vikram Malhotra", lastMsg: "Ok, cool.", time: "Sat", unread: false, img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=60" },
+];
+
+export const messages = [
+    { id: 1, sender: "Rahul Sharma", text: "Hey Kola, are you free this weekend?", isUser: false, time: "10:28 AM" },
+    { id: 2, sender: "Kola Shanakar", text: "Yeah, I think so. What's up?", isUser: true, time: "10:29 AM" },
+    { id: 3, sender: "Rahul Sharma", text: "Planning a trek to Lonavala. Wanna join?", isUser: false, time: "10:30 AM" },
+    { id: 4, sender: "Kola Shanakar", text: "Sounds awesome! Count me in.", isUser: true, time: "10:30 AM" },
+    { id: 5, sender: "Rahul Sharma", text: "See you tomorrow! 👋", isUser: false, time: "10:30 AM" },
+];
+
+export const fundraisers = [
+    { id: 1, title: "Help Stray Dogs in Mumbai", raised: "₹1,20,000", goal: "₹2,00,000", img: "https://picsum.photos/400/200?random=70" },
+    { id: 2, title: "Education for Underprivileged Kids", raised: "₹5,50,000", goal: "₹10,00,000", img: "https://picsum.photos/400/200?random=71" },
+    { id: 3, title: "Medical Relief for Flood Victims", raised: "₹80,000", goal: "₹1,00,000", img: "https://picsum.photos/400/200?random=72" },
+];
+
+export const adCampaigns = [
+    { id: 1, name: "Summer Sale Promo", status: "Active", reach: "12.5K", spent: "₹5,000", clicks: 450 },
+    { id: 2, name: "New Product Launch", status: "Review", reach: "0", spent: "₹0", clicks: 0 },
+    { id: 3, name: "Brand Awareness", status: "Completed", reach: "50K", spent: "₹15,000", clicks: 1200 },
+];
+
+
 
     { id: 1, title: "Tech Meetup 2025", date: "SAT, AUG 12", location: "WeWork Andheri", img: "https://picsum.photos/400/200?random=30", interested: 120 },
     { id: 2, title: "Music Festival", date: "SUN, SEP 05", location: "Jio Garden", img: "https://picsum.photos/400/200?random=31", interested: 5000 },
