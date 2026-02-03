@@ -180,7 +180,7 @@ export const adCampaigns = [
     { id: 3, name: "Brand Awareness", status: "Completed", reach: "50K", spent: "₹15,000", clicks: 1200 },
 ];
 
-export const adCampaigns = [
+export const games = [
     { id: 1, title: "Ludo King", players: "10M+ playing", img: "https://picsum.photos/200/200?random=10" },
     { id: 2, title: "Candy Crush", players: "5M+ playing", img: "https://picsum.photos/200/200?random=11" },
     { id: 3, title: "8 Ball Pool", players: "2M+ playing", img: "https://picsum.photos/200/200?random=12" },
