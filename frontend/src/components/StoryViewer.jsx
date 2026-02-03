@@ -4,12 +4,6 @@ import { X, ChevronLeft, ChevronRight, Heart, Send } from 'lucide-react';
 const StoryViewer = ({ stories, initialStoryIndex, onClose }) => {
     const [currentIndex, setCurrentIndex] = useState(initialStoryIndex);
     const [progress, setProgress] = useState(0);
-    const [resetTrigger, setResetTrigger] = useState(0);
-
-    // When currentIndex changes, trigger a reset
-    useEffect(() => {
-        setResetTrigger(prev => prev + 1);
-    }, [currentIndex]);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -30,7 +24,8 @@ const StoryViewer = ({ stories, initialStoryIndex, onClose }) => {
         }, 50); // 5 seconds duration
 
         return () => clearInterval(timer);
-    }, [resetTrigger, currentIndex, stories.length, onClose]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentIndex]);
 
     const handleNext = () => {
         if (currentIndex < stories.length - 1) {
