@@ -1,10 +1,33 @@
 import React, { useState } from 'react';
 import { stories, posts, currentUser } from '../mock';
-import { Video, Image, Smile, ThumbsUp, MessageSquare, Share2, MoreHorizontal, X } from 'lucide-react';
+import { Video, Image, Smile, ThumbsUp, MessageSquare, Share2, MoreHorizontal } from 'lucide-react';
+import CreatePostModal from '../components/CreatePostModal';
+import StoryViewer from '../components/StoryViewer';
 
 const Home = () => {
+  const [isPostModalOpen, setIsPostModalOpen] = useState(false);
+  const [activeStoryIndex, setActiveStoryIndex] = useState(null);
+
+  const handleStoryClick = (index) => {
+      setActiveStoryIndex(index);
+  };
+
+  const closeStoryViewer = () => {
+      setActiveStoryIndex(null);
+  };
+
   return (
     <div className="max-w-[590px] mx-auto pt-4 space-y-4">
+      {/* Interactive Overlays */}
+      <CreatePostModal isOpen={isPostModalOpen} onClose={() => setIsPostModalOpen(false)} />
+      {activeStoryIndex !== null && (
+          <StoryViewer 
+            stories={stories.filter(s => !s.isUser)} // Filter out create story card logic for viewer
+            initialStoryIndex={activeStoryIndex} 
+            onClose={closeStoryViewer} 
+          />
+      )}
+
       {/* Story Reel */}
       <div className="relative h-[200px] flex gap-2 overflow-x-auto no-scrollbar pb-2">
         {/* Create Story Card */}
@@ -20,8 +43,12 @@ const Home = () => {
         </div>
         
         {/* Friends Stories */}
-        {stories.map((story) => (
-             <div key={story.id} className="min-w-[110px] w-[110px] h-full bg-gray-200 rounded-xl overflow-hidden cursor-pointer relative group">
+        {stories.filter(s => !s.isUser).map((story, index) => (
+             <div 
+                key={story.id} 
+                onClick={() => handleStoryClick(index)}
+                className="min-w-[110px] w-[110px] h-full bg-gray-200 rounded-xl overflow-hidden cursor-pointer relative group"
+             >
                 <img src={story.img} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" alt="" />
                 <div className="absolute top-3 left-3 w-10 h-10 rounded-full border-4 border-[#0866FF] overflow-hidden">
                      <img src={story.img} className="w-full h-full object-cover" alt="" />
@@ -38,7 +65,10 @@ const Home = () => {
       <div className="bg-white rounded-lg shadow-sm p-4">
          <div className="flex gap-3 mb-3">
              <img src={currentUser.profilePic} className="w-10 h-10 rounded-full object-cover" alt="" />
-             <div className="bg-[#F0F2F5] hover:bg-[#E4E6EB] transition-colors rounded-full flex-1 flex items-center px-4 cursor-pointer">
+             <div 
+                onClick={() => setIsPostModalOpen(true)}
+                className="bg-[#F0F2F5] hover:bg-[#E4E6EB] transition-colors rounded-full flex-1 flex items-center px-4 cursor-pointer"
+             >
                  <span className="text-gray-500">What's on your mind, Kola?</span>
              </div>
          </div>
@@ -92,7 +122,7 @@ const PostCard = ({ post }) => {
                              <div className="flex items-center gap-1 text-gray-500 text-xs">
                                  <span>{post.time}</span>
                                  <span>·</span>
-                                 <Users size={12} />
+                                 <div className="w-3 h-3 bg-gray-400 rounded-full"></div> 
                              </div>
                          </div>
                     </div>
