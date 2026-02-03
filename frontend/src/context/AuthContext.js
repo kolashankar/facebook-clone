@@ -10,20 +10,16 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Check local storage for token
+        // Check local storage for token and initialize auth state
         const token = localStorage.getItem('token');
         const userData = localStorage.getItem('user');
         
-        // Use a function to initialize state based on localStorage
-        const initializeAuth = () => {
-            if (token && userData) {
-                setAuth({ token });
-                setUser(JSON.parse(userData));
-            }
-            setLoading(false);
-        };
-        
-        initializeAuth();
+        if (token && userData) {
+            setAuth({ token });
+            setUser(JSON.parse(userData));
+        }
+        setLoading(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const login = async (email, password) => {
