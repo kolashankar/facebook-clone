@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './Layout';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Profile from './pages/Profile';
 
-// Placeholder components for 15+ pages structure
-const Profile = () => <div className="p-4 bg-white rounded-lg shadow">Profile Page (Work in Progress)</div>;
+// Placeholder components
 const Friends = () => <div className="p-4 bg-white rounded-lg shadow">Friends Page</div>;
 const Video = () => <div className="p-4 bg-white rounded-lg shadow">Video Watch Page</div>;
 const Marketplace = () => <div className="p-4 bg-white rounded-lg shadow">Marketplace Page</div>;
@@ -17,14 +17,13 @@ const Events = () => <div className="p-4 bg-white rounded-lg shadow">Events Page
 const Pages = () => <div className="p-4 bg-white rounded-lg shadow">Pages Manager</div>;
 
 function App() {
-  const isAuthenticated = true; // Mock authentication
+  const isAuthenticated = true; 
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
         
-        {/* Main App Layout Routes */}
         <Route path="/" element={isAuthenticated ? <Layout /> : <Navigate to="/login" />}>
           <Route index element={<Home />} />
           <Route path="profile" element={<Profile />} />

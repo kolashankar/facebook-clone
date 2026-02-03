@@ -1,7 +1,9 @@
 import React from 'react';
-import { Outlet, NavLink, Link } from 'react-router-dom';
-import { Search, Home, MonitorPlay, Store, Users, Bell, MessageCircle, Menu, UserCircle, Grid } from 'lucide-react';
+import { Outlet, NavLink, Link, useLocation } from 'react-router-dom';
+import { Search, Home, MonitorPlay, Store, Users, Bell, MessageCircle, Menu, Grid } from 'lucide-react';
 import { currentUser } from './mock';
+import Sidebar from './components/Sidebar';
+import Rightbar from './components/Rightbar';
 
 const Navbar = () => {
   return (
@@ -81,88 +83,37 @@ const ActionIcon = ({ icon }) => (
 );
 
 const Layout = () => {
+  const location = useLocation();
+  // Hide sidebars on profile page to match real FB layout (Profile usually takes full width or special layout)
+  // Actually on desktop FB, left sidebar is often collapsible or different, but lets keep it for now.
+  // Correction: On profile page, the left sidebar is NOT present in the same way. It's usually cleaner.
+  // But to keep it simple and consistent with the "clone" request which asked for pages, I will conditionally hide right sidebar on profile.
+  
+  const isProfile = location.pathname === '/profile';
+
   return (
     <div className="min-h-screen bg-[#F0F2F5] dark:bg-[#18191A] text-black dark:text-white pt-14">
       <Navbar />
       <div className="flex justify-between">
-         {/* Left Sidebar - Hidden on mobile */}
-        <div className="w-[360px] hidden xl:block fixed left-0 top-14 bottom-0 overflow-y-auto p-4 hover:overflow-y-scroll custom-scrollbar">
-           <SidebarContent />
+         {/* Left Sidebar - Sticky */}
+         {/* On Profile page, standard sidebar is often hidden or replaced. We'll keep it for navigation consistency but maybe adjust logic later */}
+        <div className={`w-[360px] hidden ${isProfile ? 'xl:hidden' : 'xl:block'} fixed left-0 top-14 bottom-0 overflow-y-auto p-4 hover:overflow-y-scroll custom-scrollbar`}>
+           <Sidebar />
         </div>
 
         {/* Main Content - Centered */}
-        <div className="flex-1 max-w-[740px] mx-auto min-h-screen p-4 md:px-8 xl:px-16">
+        {/* If Profile, we give it full width minus sidebars if present */}
+        <div className={`flex-1 min-h-screen ${isProfile ? 'w-full' : 'max-w-[740px] mx-auto p-4 md:px-8 xl:px-16'}`}>
           <Outlet />
         </div>
 
-        {/* Right Sidebar - Hidden on smaller screens */}
-        <div className="w-[360px] hidden lg:block fixed right-0 top-14 bottom-0 overflow-y-auto p-4 hover:overflow-y-scroll custom-scrollbar">
-           <RightbarContent />
+        {/* Right Sidebar - Sticky */}
+        <div className={`w-[360px] hidden ${isProfile ? 'lg:hidden' : 'lg:block'} fixed right-0 top-14 bottom-0 overflow-y-auto p-4 hover:overflow-y-scroll custom-scrollbar`}>
+           <Rightbar />
         </div>
       </div>
     </div>
   );
 };
-
-// Simple placeholders for sidebars to prevent errors before full implementation
-const SidebarContent = () => {
-    return (
-        <div className="space-y-2">
-            <Link to="/profile" className="flex items-center gap-3 p-2 hover:bg-black/5 rounded-lg transition-colors cursor-pointer">
-                <img src={currentUser.profilePic} className="w-9 h-9 rounded-full object-cover" alt="" />
-                <span className="font-semibold text-[15px]">{currentUser.name}</span>
-            </Link>
-            <SidebarItem icon={<Users size={24} className="text-[#1877F2]" />} text="Friends" />
-            <SidebarItem icon={<Store size={24} className="text-[#1877F2]" />} text="Marketplace" />
-            <SidebarItem icon={<MonitorPlay size={24} className="text-[#1877F2]" />} text="Video" />
-            <div className="h-[1px] bg-gray-300 my-2"></div>
-            <h3 className="text-gray-500 font-semibold px-2 mb-2">Your Shortcuts</h3>
-             <SidebarItem img="https://picsum.photos/40?random=1" text="Candy Crush Saga" />
-             <SidebarItem img="https://picsum.photos/40?random=2" text="Tech Enthusiasts India" />
-        </div>
-    )
-}
-
-const RightbarContent = () => {
-    const { contacts } = require('./mock');
-    return (
-        <div>
-            <h3 className="text-gray-500 font-semibold mb-2">Sponsored</h3>
-            <div className="mb-4 hover:bg-black/5 p-2 rounded-lg cursor-pointer transition-colors">
-                <div className="flex items-center gap-3">
-                     <img src="https://picsum.photos/120/120?random=10" className="w-32 h-32 object-cover rounded-lg" alt="Ad" />
-                     <div className="flex flex-col">
-                        <span className="font-semibold text-[15px]">Luxury Watches</span>
-                        <span className="text-xs text-gray-500">shop.luxurywatches.com</span>
-                     </div>
-                </div>
-            </div>
-            <div className="h-[1px] bg-gray-300 my-2"></div>
-            <div className="flex items-center justify-between mb-2">
-                <h3 className="text-gray-500 font-semibold">Contacts</h3>
-                <div className="flex gap-2 text-gray-500">
-                    <Search size={16} />
-                </div>
-            </div>
-            {contacts.map(c => (
-                 <div key={c.id} className="flex items-center gap-3 p-2 hover:bg-black/5 rounded-lg cursor-pointer transition-colors">
-                    <div className="relative">
-                        <img src={c.img} className="w-9 h-9 rounded-full object-cover" alt="" />
-                        {c.active && <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white"></div>}
-                    </div>
-                    <span className="font-semibold text-[15px]">{c.name}</span>
-                </div>
-            ))}
-        </div>
-    )
-}
-
-const SidebarItem = ({ icon, img, text }) => (
-    <div className="flex items-center gap-3 p-2 hover:bg-black/5 rounded-lg transition-colors cursor-pointer">
-        {icon ? icon : <img src={img} className="w-9 h-9 rounded-lg object-cover" alt="" />}
-        <span className="font-medium text-[15px]">{text}</span>
-    </div>
-)
-
 
 export default Layout;
