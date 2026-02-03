@@ -33,7 +33,7 @@ const Groups = () => {
                 </div>
 
                 <div className="h-[1px] bg-gray-300 my-4"></div>
-                <h3 className="font-semibold text-lg mb-2">Groups you've joined</h3>
+                <h3 className="font-semibold text-lg mb-2">Groups you&apos;ve joined</h3>
                 {groups.filter(g => g.joined).map(g => (
                     <div key={g.id} className="flex items-center gap-3 p-2 hover:bg-black/5 rounded-lg cursor-pointer">
                         <img src={g.img} className="w-12 h-12 rounded-lg object-cover" alt="" />
