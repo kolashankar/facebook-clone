@@ -20,15 +20,26 @@ import Fundraisers from './pages/Fundraisers';
 import AdCenter from './pages/AdCenter';
 import Menu from './pages/Menu';
 
-function App() {
-  const isAuthenticated = true; 
+import { AuthProvider, useAuth } from './context/AuthContext';
 
+const ProtectedRoute = ({ children }) => {
+    const { user, loading } = useAuth();
+    
+    if (loading) return <div>Loading...</div>;
+    
+    if (!user) {
+        return <Navigate to="/login" />;
+    }
+    
+    return children;
+};
+
+function AppRoutes() {
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
         
-        <Route path="/" element={isAuthenticated ? <Layout /> : <Navigate to="/login" />}>
+        <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
           <Route index element={<Home />} />
           <Route path="profile" element={<Profile />} />
           <Route path="friends" element={<Friends />} />
@@ -48,8 +59,17 @@ function App() {
           <Route path="menu" element={<Menu />} />
         </Route>
       </Routes>
-    </BrowserRouter>
   );
+}
+
+function App() {
+    return (
+        <AuthProvider>
+            <BrowserRouter>
+                <AppRoutes />
+            </BrowserRouter>
+        </AuthProvider>
+    )
 }
 
 export default App;

@@ -1,12 +1,69 @@
-import React, { useState } from 'react';
-import { stories, posts, currentUser } from '../mock';
+import React, { useState, useEffect } from 'react';
+import { stories, posts as mockPosts } from '../mock';
 import { Video, Image, Smile, ThumbsUp, MessageSquare, Share2, MoreHorizontal } from 'lucide-react';
 import CreatePostModal from '../components/CreatePostModal';
 import StoryViewer from '../components/StoryViewer';
+import { useAuth } from '../context/AuthContext';
+import axios from '../api/axios';
 
 const Home = () => {
+  const { user, auth } = useAuth();
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
   const [activeStoryIndex, setActiveStoryIndex] = useState(null);
+  
+  // State for posts (merged mock + real)
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch posts
+  const fetchPosts = async () => {
+      try {
+          const res = await axios.get('/posts/');
+          // Combine real posts with mock posts for a fuller feel
+          // Map backend post structure to frontend structure if needed
+          const mappedPosts = res.data.map(p => ({
+              id: p.id,
+              userId: p.user_id,
+              user: p.user_name,
+              profilePic: p.user_pic,
+              time: 'Just now', // Simplified time
+              content: p.content,
+              image: p.image,
+              likes: p.likes,
+              comments: p.comments,
+              shares: p.shares
+          }));
+          
+          setPosts([...mappedPosts, ...mockPosts]);
+      } catch (err) {
+          console.error("Failed to fetch posts", err);
+          setPosts(mockPosts); // Fallback
+      } finally {
+          setLoading(false);
+      }
+  };
+
+  useEffect(() => {
+      fetchPosts();
+  }, []);
+
+  const handlePostCreated = (newPost) => {
+      // Optimistic update or refetch
+      const mappedPost = {
+          id: newPost.id,
+          userId: newPost.user_id,
+          user: newPost.user_name,
+          profilePic: newPost.user_pic,
+          time: 'Just now',
+          content: newPost.content,
+          image: newPost.image,
+          likes: 0,
+          comments: 0,
+          shares: 0
+      };
+      setPosts([mappedPost, ...posts]);
+      setIsPostModalOpen(false);
+  };
 
   const handleStoryClick = (index) => {
       setActiveStoryIndex(index);
@@ -19,10 +76,14 @@ const Home = () => {
   return (
     <div className="max-w-[590px] mx-auto pt-4 space-y-4">
       {/* Interactive Overlays */}
-      <CreatePostModal isOpen={isPostModalOpen} onClose={() => setIsPostModalOpen(false)} />
+      <CreatePostModal 
+        isOpen={isPostModalOpen} 
+        onClose={() => setIsPostModalOpen(false)} 
+        onPostCreated={handlePostCreated}
+      />
       {activeStoryIndex !== null && (
           <StoryViewer 
-            stories={stories.filter(s => !s.isUser)} // Filter out create story card logic for viewer
+            stories={stories.filter(s => !s.isUser)} 
             initialStoryIndex={activeStoryIndex} 
             onClose={closeStoryViewer} 
           />
@@ -32,7 +93,7 @@ const Home = () => {
       <div className="relative h-[200px] flex gap-2 overflow-x-auto no-scrollbar pb-2">
         {/* Create Story Card */}
         <div className="min-w-[110px] w-[110px] h-full bg-white rounded-xl shadow-sm overflow-hidden cursor-pointer relative group">
-            <img src={currentUser.profilePic} className="h-[75%] w-full object-cover group-hover:scale-105 transition-transform duration-300" alt="" />
+            <img src={user?.profile_pic || user?.profilePic} className="h-[75%] w-full object-cover group-hover:scale-105 transition-transform duration-300" alt="" />
             <div className="h-[25%] bg-white relative flex justify-center pt-6">
                  <div className="absolute -top-4 w-9 h-9 bg-[#0866FF] rounded-full flex items-center justify-center border-4 border-white">
                     <span className="text-white text-xl font-bold">+</span>
@@ -61,15 +122,15 @@ const Home = () => {
         ))}
       </div>
 
-      {/* Create Post */}
+      {/* Create Post Widget */}
       <div className="bg-white rounded-lg shadow-sm p-4">
          <div className="flex gap-3 mb-3">
-             <img src={currentUser.profilePic} className="w-10 h-10 rounded-full object-cover" alt="" />
+             <img src={user?.profile_pic || user?.profilePic} className="w-10 h-10 rounded-full object-cover" alt="" />
              <div 
                 onClick={() => setIsPostModalOpen(true)}
                 className="bg-[#F0F2F5] hover:bg-[#E4E6EB] transition-colors rounded-full flex-1 flex items-center px-4 cursor-pointer"
              >
-                 <span className="text-gray-500">What's on your mind, Kola?</span>
+                 <span className="text-gray-500">What's on your mind, {user?.name?.split(' ')[0]}?</span>
              </div>
          </div>
          <div className="h-[1px] bg-gray-200 my-2"></div>
@@ -93,6 +154,8 @@ const Home = () => {
       {posts.map(post => (
           <PostCard key={post.id} post={post} />
       ))}
+      
+      {loading && <div className="text-center p-4">Loading posts...</div>}
     </div>
   );
 };
