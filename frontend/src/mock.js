@@ -130,6 +130,11 @@ export const groups = [
 ];
 
 export const events = [
+    { id: 1, title: "Tech Meetup 2025", date: "SAT, AUG 12", location: "WeWork Andheri", img: "https://picsum.photos/400/200?random=30", interested: 120 },
+    { id: 2, title: "Music Festival", date: "SUN, SEP 05", location: "Jio Garden", img: "https://picsum.photos/400/200?random=31", interested: 5000 },
+    { id: 3, title: "Startup Pitch Night", date: "FRI, AUG 18", location: "BKC", img: "https://picsum.photos/400/200?random=32", interested: 45 },
+    { id: 4, title: "Photography Walk", date: "SUN, AUG 20", location: "Colaba Causeway", img: "https://picsum.photos/400/200?random=33", interested: 80 },
+];
 
 export const memories = [
     { id: 1, year: "1 year ago", content: "Trip to Goa with friends! 🏖️", img: "https://picsum.photos/400/300?random=40", date: "August 12, 2024" },
