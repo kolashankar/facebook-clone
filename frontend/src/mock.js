@@ -180,26 +180,7 @@ export const adCampaigns = [
     { id: 3, name: "Brand Awareness", status: "Completed", reach: "50K", spent: "₹15,000", clicks: 1200 },
 ];
 
-
-
-    { id: 1, title: "Tech Meetup 2025", date: "SAT, AUG 12", location: "WeWork Andheri", img: "https://picsum.photos/400/200?random=30", interested: 120 },
-    { id: 2, title: "Music Festival", date: "SUN, SEP 05", location: "Jio Garden", img: "https://picsum.photos/400/200?random=31", interested: 5000 },
-    { id: 3, title: "Startup Pitch Night", date: "FRI, AUG 18", location: "BKC", img: "https://picsum.photos/400/200?random=32", interested: 45 },
-    { id: 4, title: "Photography Walk", date: "SUN, AUG 20", location: "Colaba Causeway", img: "https://picsum.photos/400/200?random=33", interested: 80 },
-];
-
-    {
-        id: 3,
-        title: "Top 10 Places to Visit in India 🇮🇳",
-        channel: "Travel Diaries",
-        views: "2.5M views",
-        time: "2 weeks ago",
-        videoUrl: "https://www.youtube.com/embed/IgAnj6r1O48?autoplay=0&mute=1",
-        avatar: "https://picsum.photos/50?random=3"
-    }
-];
-
-export const games = [
+export const adCampaigns = [
     { id: 1, title: "Ludo King", players: "10M+ playing", img: "https://picsum.photos/200/200?random=10" },
     { id: 2, title: "Candy Crush", players: "5M+ playing", img: "https://picsum.photos/200/200?random=11" },
     { id: 3, title: "8 Ball Pool", players: "2M+ playing", img: "https://picsum.photos/200/200?random=12" },
