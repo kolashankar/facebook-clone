@@ -5,23 +5,17 @@ import { currentUser as mockUser } from '../mock';
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-    const [auth, setAuth] = useState({});
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        // Check local storage for token and initialize auth state
-        // This is an initialization effect, not a cascading state update
+    const [auth, setAuth] = useState(() => {
         const token = localStorage.getItem('token');
+        return token ? { token } : {};
+    });
+    
+    const [user, setUser] = useState(() => {
         const userData = localStorage.getItem('user');
-        
-        if (token && userData) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setAuth({ token });
-            setUser(JSON.parse(userData));
-        }
-        setLoading(false);
-    }, []);
+        return userData ? JSON.parse(userData) : null;
+    });
+    
+    const [loading, setLoading] = useState(false);
 
     const login = async (email, password) => {
         try {
