@@ -132,6 +132,12 @@ export const savedItems = [
     { id: 3, type: "Marketplace", title: "MacBook Air M1", source: "Marketplace", img: "https://picsum.photos/100/100?random=52" },
 ];
 
+export const managedPages = [
+    { id: 1, name: "Kola's Coding Blog", category: "Blogger", likes: 1205, img: "https://picsum.photos/200/200?random=60" },
+    { id: 2, name: "Mumbai Tech Meetups", category: "Community", likes: 5400, img: "https://picsum.photos/200/200?random=61" },
+];
+
+
     { id: 1, title: "Tech Meetup 2025", date: "SAT, AUG 12", location: "WeWork Andheri", img: "https://picsum.photos/400/200?random=30", interested: 120 },
     { id: 2, title: "Music Festival", date: "SUN, SEP 05", location: "Jio Garden", img: "https://picsum.photos/400/200?random=31", interested: 5000 },
     { id: 3, title: "Startup Pitch Night", date: "FRI, AUG 18", location: "BKC", img: "https://picsum.photos/400/200?random=32", interested: 45 },
