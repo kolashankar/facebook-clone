@@ -14,15 +14,16 @@ export const AuthProvider = ({ children }) => {
         const token = localStorage.getItem('token');
         const userData = localStorage.getItem('user');
         
-        if (token && userData) {
-            setAuth({ token });
-            setUser(JSON.parse(userData));
-        } else {
-             // Fallback to mock user for "Guest" experience if needed, 
-             // but for this phase we want real auth.
-             // We'll leave it null to force login.
-        }
-        setLoading(false);
+        // Use a function to initialize state based on localStorage
+        const initializeAuth = () => {
+            if (token && userData) {
+                setAuth({ token });
+                setUser(JSON.parse(userData));
+            }
+            setLoading(false);
+        };
+        
+        initializeAuth();
     }, []);
 
     const login = async (email, password) => {
