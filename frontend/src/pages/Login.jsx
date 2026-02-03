@@ -8,7 +8,7 @@ const Login = () => {
     
     const [isRegistering, setIsRegistering] = useState(false);
     const [formData, setFormData] = useState({
-        name: 'Kola Shanakar',
+        name: 'Kola Shankar',
         email: 'kola@example.com',
         password: 'password'
     });

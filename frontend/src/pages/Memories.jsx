@@ -33,7 +33,7 @@ const Memories = () => {
                                 <div className="flex gap-2 mb-3">
                                     <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&q=80" className="w-10 h-10 rounded-full" alt="" />
                                     <div>
-                                        <div className="font-semibold">Kola Shanakar</div>
+                                        <div className="font-semibold">Kola Shankar</div>
                                         <div className="text-xs text-gray-500">{memory.date}</div>
                                     </div>
                                 </div>

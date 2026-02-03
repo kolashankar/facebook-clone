@@ -19,7 +19,7 @@ The login functionality has been completely removed from the Facebook clone fron
    - Removed localStorage token/user management
    - Removed axios API calls for authentication
    - **Auto-login**: User is now automatically set to the mock user (`currentUser` from mock.js)
-   - The app always has a logged-in user (Kola Shanakar) without any authentication
+   - The app always has a logged-in user (Kola Shankar) without any authentication
 
 ## 🎯 Result
 
@@ -30,7 +30,7 @@ The login functionality has been completely removed from the Facebook clone fron
 
 ### After:
 - App loads directly to home page (`/`)
-- User "Kola Shanakar" is automatically logged in
+- User "Kola Shankar" is automatically logged in
 - All pages are immediately accessible
 - No login screen or authentication required
 - Attempting to access `/login` shows a blank page (route doesn't exist)
@@ -40,7 +40,7 @@ The login functionality has been completely removed from the Facebook clone fron
 ✅ Home page loads without login  
 ✅ Profile page accessible  
 ✅ All navigation works seamlessly  
-✅ User data (Kola Shanakar) is displayed throughout the app  
+✅ User data (Kola Shankar) is displayed throughout the app  
 ✅ Stories, posts, and all UI elements render correctly  
 ✅ No authentication barriers anywhere in the app  
 
@@ -50,7 +50,7 @@ The login functionality has been completely removed from the Facebook clone fron
 ```javascript
 {
   id: "u1",
-  name: "Kola Shanakar",
+  name: "Kola Shankar",
   profilePic: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d...",
   coverPic: "https://images.unsplash.com/photo-1534067783741-512d69f63778...",
   bio: "Living life one code at a time 💻 | Foodie 🍕 | Traveler ✈️",

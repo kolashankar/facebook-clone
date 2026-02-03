@@ -1,7 +1,7 @@
 
 export const currentUser = {
   id: "u1",
-  name: "Kola Shanakar",
+  name: "Kola Shankar",
   profilePic: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80", 
   coverPic: "https://images.unsplash.com/photo-1534067783741-512d69f63778?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
   bio: "Living life one code at a time 💻 | Foodie 🍕 | Traveler ✈️",
@@ -15,7 +15,7 @@ export const currentUser = {
 };
 
 export const stories = [
-  { id: 1, user: "Kola Shanakar", img: currentUser.profilePic, isUser: true },
+  { id: 1, user: "Kola Shankar", img: currentUser.profilePic, isUser: true },
   { id: 2, user: "Rahul Sharma", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60" },
   { id: 3, user: "Priya Singh", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60" },
   { id: 4, user: "Amit Patel", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60" },
@@ -26,7 +26,7 @@ export const posts = [
   {
     id: 1,
     userId: "u1",
-    user: "Kola Shanakar",
+    user: "Kola Shankar",
     profilePic: currentUser.profilePic,
     time: "2h",
     content: "Just finished a great hiking trip! The view was absolutely breathtaking. 🏔️ #Nature #Hiking #WeekendVibes",
@@ -49,7 +49,7 @@ export const posts = [
   {
     id: 3,
     userId: "u1",
-    user: "Kola Shanakar",
+    user: "Kola Shankar",
     profilePic: currentUser.profilePic,
     time: "1d",
     content: "Does anyone have recommendations for the best pizza places in Mumbai? 🍕 Craving some authentic wood-fired pizza!",
@@ -162,9 +162,9 @@ export const chats = [
 
 export const messages = [
     { id: 1, sender: "Rahul Sharma", text: "Hey Kola, are you free this weekend?", isUser: false, time: "10:28 AM" },
-    { id: 2, sender: "Kola Shanakar", text: "Yeah, I think so. What's up?", isUser: true, time: "10:29 AM" },
+    { id: 2, sender: "Kola Shankar", text: "Yeah, I think so. What's up?", isUser: true, time: "10:29 AM" },
     { id: 3, sender: "Rahul Sharma", text: "Planning a trek to Lonavala. Wanna join?", isUser: false, time: "10:30 AM" },
-    { id: 4, sender: "Kola Shanakar", text: "Sounds awesome! Count me in.", isUser: true, time: "10:30 AM" },
+    { id: 4, sender: "Kola Shankar", text: "Sounds awesome! Count me in.", isUser: true, time: "10:30 AM" },
     { id: 5, sender: "Rahul Sharma", text: "See you tomorrow! 👋", isUser: false, time: "10:30 AM" },
 ];
 
