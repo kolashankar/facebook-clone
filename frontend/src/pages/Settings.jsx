@@ -65,14 +65,14 @@ const Settings = () => {
                              <Key size={24} className="mt-1 text-gray-500" />
                              <div>
                                  <h3 className="font-semibold dark:text-white">Change password</h3>
-                                 <p className="text-gray-500 text-sm">It's a good idea to use a strong password that you're not using elsewhere</p>
+                                 <p className="text-gray-500 text-sm">It&apos;s a good idea to use a strong password that you&apos;re not using elsewhere</p>
                              </div>
                          </div>
                          <div className="flex gap-3 items-start cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 p-2 rounded-lg transition-colors">
                              <Shield size={24} className="mt-1 text-gray-500" />
                              <div>
                                  <h3 className="font-semibold dark:text-white">Two-factor authentication</h3>
-                                 <p className="text-gray-500 text-sm">We'll ask for a login code if we notice an attempted login from an unrecognized device or browser.</p>
+                                 <p className="text-gray-500 text-sm">We&apos;ll ask for a login code if we notice an attempted login from an unrecognized device or browser.</p>
                              </div>
                          </div>
                      </div>
