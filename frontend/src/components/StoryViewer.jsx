@@ -6,6 +6,9 @@ const StoryViewer = ({ stories, initialStoryIndex, onClose }) => {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
+        // Reset progress when index changes
+        setProgress(0);
+        
         const timer = setInterval(() => {
             setProgress(prev => {
                 if (prev >= 100) {
@@ -23,11 +26,6 @@ const StoryViewer = ({ stories, initialStoryIndex, onClose }) => {
 
         return () => clearInterval(timer);
     }, [currentIndex, stories.length, onClose]);
-
-    // Reset progress when index changes manually
-    useEffect(() => {
-        setProgress(0);
-    }, [currentIndex]);
 
     const handleNext = () => {
         if (currentIndex < stories.length - 1) {
