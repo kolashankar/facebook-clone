@@ -6,11 +6,11 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Friends from './pages/Friends';
 import Marketplace from './pages/Marketplace';
+import Watch from './pages/Watch';
+import Gaming from './pages/Gaming';
 
 // Placeholder components
-const Video = () => <div className="p-4 bg-white rounded-lg shadow">Video Watch Page</div>;
 const Groups = () => <div className="p-4 bg-white rounded-lg shadow">Groups Feed</div>;
-const Gaming = () => <div className="p-4 bg-white rounded-lg shadow">Gaming Page</div>;
 const Memories = () => <div className="p-4 bg-white rounded-lg shadow">Memories Page</div>;
 const Saved = () => <div className="p-4 bg-white rounded-lg shadow">Saved Items</div>;
 const Events = () => <div className="p-4 bg-white rounded-lg shadow">Events Page</div>;
@@ -29,9 +29,9 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="friends" element={<Friends />} />
           <Route path="marketplace" element={<Marketplace />} />
-          <Route path="video" element={<Video />} />
-          <Route path="groups" element={<Groups />} />
+          <Route path="video" element={<Watch />} />
           <Route path="gaming" element={<Gaming />} />
+          <Route path="groups" element={<Groups />} />
           <Route path="memories" element={<Memories />} />
           <Route path="saved" element={<Saved />} />
           <Route path="events" element={<Events />} />

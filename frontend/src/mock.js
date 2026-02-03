@@ -1,8 +1,9 @@
+
 export const currentUser = {
   id: "u1",
   name: "Kola Shanakar",
-  profilePic: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80", // Generic male portrait
-  coverPic: "https://images.unsplash.com/photo-1534067783741-512d69f63778?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80", // Urban landscape
+  profilePic: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80", 
+  coverPic: "https://images.unsplash.com/photo-1534067783741-512d69f63778?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
   bio: "Living life one code at a time 💻 | Foodie 🍕 | Traveler ✈️",
   work: "Software Engineer at TechCorp",
   education: "Studied Computer Science at IIT Bombay",
@@ -89,3 +90,41 @@ export const contacts = [
     { id: 4, name: "Sneha Gupta", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&auto=format&fit=crop&q=60", active: true },
 ];
 
+export const videos = [
+    {
+        id: 1,
+        title: "Incredible Street Food in Mumbai! 🥪",
+        channel: "Foodie Adventures",
+        views: "1.2M views",
+        time: "3 days ago",
+        videoUrl: "https://www.youtube.com/embed/H0d8-1r3a8Y?autoplay=0&mute=1",
+        avatar: "https://picsum.photos/50?random=1"
+    },
+    {
+        id: 2,
+        title: "React JS Crash Course 2025 ⚛️",
+        channel: "Code Master",
+        views: "500K views",
+        time: "1 week ago",
+        videoUrl: "https://www.youtube.com/embed/w7ejDZ8SWv8?autoplay=0&mute=1",
+        avatar: "https://picsum.photos/50?random=2"
+    },
+    {
+        id: 3,
+        title: "Top 10 Places to Visit in India 🇮🇳",
+        channel: "Travel Diaries",
+        views: "2.5M views",
+        time: "2 weeks ago",
+        videoUrl: "https://www.youtube.com/embed/IgAnj6r1O48?autoplay=0&mute=1",
+        avatar: "https://picsum.photos/50?random=3"
+    }
+];
+
+export const games = [
+    { id: 1, title: "Ludo King", players: "10M+ playing", img: "https://picsum.photos/200/200?random=10" },
+    { id: 2, title: "Candy Crush", players: "5M+ playing", img: "https://picsum.photos/200/200?random=11" },
+    { id: 3, title: "8 Ball Pool", players: "2M+ playing", img: "https://picsum.photos/200/200?random=12" },
+    { id: 4, title: "Subway Surfers", players: "8M+ playing", img: "https://picsum.photos/200/200?random=13" },
+    { id: 5, title: "Chess Master", players: "1M+ playing", img: "https://picsum.photos/200/200?random=14" },
+    { id: 6, title: "Word Links", players: "500K playing", img: "https://picsum.photos/200/200?random=15" },
+];
