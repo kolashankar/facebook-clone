@@ -4,11 +4,11 @@ import { X, ChevronLeft, ChevronRight, Heart, Send } from 'lucide-react';
 const StoryViewer = ({ stories, initialStoryIndex, onClose }) => {
     const [currentIndex, setCurrentIndex] = useState(initialStoryIndex);
     const [progress, setProgress] = useState(0);
-    const [storyStartTime, setStoryStartTime] = useState(Date.now());
+    const [resetTrigger, setResetTrigger] = useState(0);
 
-    // When currentIndex changes, update the start time which will trigger the effect
+    // When currentIndex changes, trigger a reset
     useEffect(() => {
-        setStoryStartTime(Date.now());
+        setResetTrigger(prev => prev + 1);
     }, [currentIndex]);
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const StoryViewer = ({ stories, initialStoryIndex, onClose }) => {
         }, 50); // 5 seconds duration
 
         return () => clearInterval(timer);
-    }, [storyStartTime, currentIndex, stories.length, onClose]);
+    }, [resetTrigger, currentIndex, stories.length, onClose]);
 
     const handleNext = () => {
         if (currentIndex < stories.length - 1) {
