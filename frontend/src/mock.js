@@ -120,6 +120,18 @@ export const groups = [
 ];
 
 export const events = [
+
+export const memories = [
+    { id: 1, year: "1 year ago", content: "Trip to Goa with friends! 🏖️", img: "https://picsum.photos/400/300?random=40", date: "August 12, 2024" },
+    { id: 2, year: "3 years ago", content: "Graduation Day 🎓", img: "https://picsum.photos/400/300?random=41", date: "August 12, 2022" },
+];
+
+export const savedItems = [
+    { id: 1, type: "Video", title: "React 19 Features Explained", source: "Code Master", img: "https://picsum.photos/100/100?random=50" },
+    { id: 2, type: "Post", title: "Best Pizza in Mumbai", source: "Mumbai Foodies", img: "https://picsum.photos/100/100?random=51" },
+    { id: 3, type: "Marketplace", title: "MacBook Air M1", source: "Marketplace", img: "https://picsum.photos/100/100?random=52" },
+];
+
     { id: 1, title: "Tech Meetup 2025", date: "SAT, AUG 12", location: "WeWork Andheri", img: "https://picsum.photos/400/200?random=30", interested: 120 },
     { id: 2, title: "Music Festival", date: "SUN, SEP 05", location: "Jio Garden", img: "https://picsum.photos/400/200?random=31", interested: 5000 },
     { id: 3, title: "Startup Pitch Night", date: "FRI, AUG 18", location: "BKC", img: "https://picsum.photos/400/200?random=32", interested: 45 },
