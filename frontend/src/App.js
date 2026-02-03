@@ -12,9 +12,7 @@ import Groups from './pages/Groups';
 import Events from './pages/Events';
 import Memories from './pages/Memories';
 import Saved from './pages/Saved';
-
-// Placeholder components
-const Pages = () => <div className="p-4 bg-white rounded-lg shadow">Pages Manager</div>;
+import Pages from './pages/Pages';
 
 function App() {
   const isAuthenticated = true; 
