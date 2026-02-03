@@ -167,7 +167,7 @@ const Profile = () => {
                 <div className="flex gap-3 mb-3">
                     <img src={currentUser.profilePic} className="w-10 h-10 rounded-full object-cover" alt="" />
                     <div className="bg-[#F0F2F5] hover:bg-[#E4E6EB] transition-colors rounded-full flex-1 flex items-center px-4 cursor-pointer">
-                        <span className="text-gray-500">What's on your mind?</span>
+                        <span className="text-gray-500">What&apos;s on your mind?</span>
                     </div>
                 </div>
                 <div className="h-[1px] bg-gray-200 my-2"></div>
