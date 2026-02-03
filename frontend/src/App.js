@@ -8,12 +8,12 @@ import Friends from './pages/Friends';
 import Marketplace from './pages/Marketplace';
 import Watch from './pages/Watch';
 import Gaming from './pages/Gaming';
+import Groups from './pages/Groups';
+import Events from './pages/Events';
 
 // Placeholder components
-const Groups = () => <div className="p-4 bg-white rounded-lg shadow">Groups Feed</div>;
 const Memories = () => <div className="p-4 bg-white rounded-lg shadow">Memories Page</div>;
 const Saved = () => <div className="p-4 bg-white rounded-lg shadow">Saved Items</div>;
-const Events = () => <div className="p-4 bg-white rounded-lg shadow">Events Page</div>;
 const Pages = () => <div className="p-4 bg-white rounded-lg shadow">Pages Manager</div>;
 
 function App() {
