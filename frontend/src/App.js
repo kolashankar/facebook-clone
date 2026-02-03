@@ -10,10 +10,10 @@ import Watch from './pages/Watch';
 import Gaming from './pages/Gaming';
 import Groups from './pages/Groups';
 import Events from './pages/Events';
+import Memories from './pages/Memories';
+import Saved from './pages/Saved';
 
 // Placeholder components
-const Memories = () => <div className="p-4 bg-white rounded-lg shadow">Memories Page</div>;
-const Saved = () => <div className="p-4 bg-white rounded-lg shadow">Saved Items</div>;
 const Pages = () => <div className="p-4 bg-white rounded-lg shadow">Pages Manager</div>;
 
 function App() {
