@@ -1,11 +1,20 @@
-import React from 'react';
-import { Outlet, NavLink, Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Outlet, NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
 import { Search, Home, MonitorPlay, Store, Users, Bell, MessageCircle, Menu, Grid } from 'lucide-react';
 import { currentUser } from './mock';
 import Sidebar from './components/Sidebar';
 import Rightbar from './components/Rightbar';
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = (e) => {
+        if(e.key === 'Enter') {
+            navigate(`/search?q=${searchTerm}`);
+        }
+    }
+
   return (
     <div className="fixed top-0 left-0 right-0 h-14 bg-white dark:bg-[#242526] shadow-sm z-50 flex items-center justify-between px-4">
       {/* Left: Logo & Search */}
@@ -21,6 +30,9 @@ const Navbar = () => {
             type="text" 
             placeholder="Search Facebook" 
             className="bg-transparent border-none outline-none ml-2 text-sm w-full placeholder-gray-500 text-black dark:text-white"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleSearch}
           />
         </div>
         <div className="md:hidden bg-[#F0F2F5] p-2 rounded-full">
