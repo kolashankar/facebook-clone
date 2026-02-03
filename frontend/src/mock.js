@@ -109,6 +109,23 @@ export const videos = [
         videoUrl: "https://www.youtube.com/embed/w7ejDZ8SWv8?autoplay=0&mute=1",
         avatar: "https://picsum.photos/50?random=2"
     },
+
+export const groups = [
+    { id: 1, name: "React Developers India", members: "25K members", img: "https://picsum.photos/200/200?random=20", joined: true },
+    { id: 2, name: "Mumbai Foodies", members: "120K members", img: "https://picsum.photos/200/200?random=21", joined: true },
+    { id: 3, name: "Tech Startup Founders", members: "15K members", img: "https://picsum.photos/200/200?random=22", joined: false },
+    { id: 4, name: "Travel Backpackers", members: "50K members", img: "https://picsum.photos/200/200?random=23", joined: true },
+    { id: 5, name: "Dog Lovers Club", members: "8K members", img: "https://picsum.photos/200/200?random=24", joined: false },
+    { id: 6, name: "Photography Enthusiasts", members: "30K members", img: "https://picsum.photos/200/200?random=25", joined: true },
+];
+
+export const events = [
+    { id: 1, title: "Tech Meetup 2025", date: "SAT, AUG 12", location: "WeWork Andheri", img: "https://picsum.photos/400/200?random=30", interested: 120 },
+    { id: 2, title: "Music Festival", date: "SUN, SEP 05", location: "Jio Garden", img: "https://picsum.photos/400/200?random=31", interested: 5000 },
+    { id: 3, title: "Startup Pitch Night", date: "FRI, AUG 18", location: "BKC", img: "https://picsum.photos/400/200?random=32", interested: 45 },
+    { id: 4, title: "Photography Walk", date: "SUN, AUG 20", location: "Colaba Causeway", img: "https://picsum.photos/400/200?random=33", interested: 80 },
+];
+
     {
         id: 3,
         title: "Top 10 Places to Visit in India 🇮🇳",
