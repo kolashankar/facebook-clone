@@ -12,11 +12,11 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         // Check local storage for token and initialize auth state
         // This is an initialization effect, not a cascading state update
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         const token = localStorage.getItem('token');
         const userData = localStorage.getItem('user');
         
         if (token && userData) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setAuth({ token });
             setUser(JSON.parse(userData));
         }
