@@ -1,46 +1,26 @@
-# Facebook Clone Implementation Plan
+# Facebook Clone Implementation Plan - Part 2
 
-## Project Overview
-This project aims to build a pixel-perfect, frontend-only clone of Facebook.com using React and Tailwind CSS. The application will feature a responsive design, mimicking the core functionality and aesthetic of the platform.
+## Phase 6: Media & Entertainment
+- [ ] **Watch (Video)**: Dedicated video feed with auto-play simulation and categories (Live, Music, Gaming).
+- [ ] **Gaming**: Gaming dashboard with live streamers, games list, and "Play" buttons.
 
-**User Profile Name:** Kola Shanakar
+## Phase 7: Community & Social
+- [ ] **Groups Feed**: List of joined groups and suggested groups.
+- [ ] **Group Detail**: A specific group view (e.g., "React Developers") with group-specific header and feed.
+- [ ] **Events**: Calendar view, upcoming events list, and "Past Events".
 
-## Phase 1: Project Setup & Core Architecture
-- [ ] **Dependencies**: Install `react-router-dom`, `lucide-react`, `framer-motion` (for smooth interactions), and `clsx`/`tailwind-merge` for styling.
-- [ ] **Routing System**: Configure `react-router-dom` with routes for Home, Profile, Friends, Watch, Marketplace, Groups, Gaming, etc.
-- [ ] **Global Layout**: Implement the persistent top Navigation Bar and the responsive 3-column layout (Sidebar, Feed, Rightbar) for the main feed.
-- [ ] **Theme Config**: Set up Tailwind configuration for Facebook's specific color palette (Primary Blue: `#0866FF`, Background: `#F0F2F5`, Card: `#FFFFFF`, Text: `#050505`).
+## Phase 8: Personal Utilities
+- [ ] **Memories**: "On this day" style page with throwback posts.
+- [ ] **Saved**: Grid/List view of saved posts and collections.
+- [ ] **Pages Manager**: Dashboard for pages managed by the user (Insights, Create Post as Page).
 
-## Phase 2: Home Page (News Feed) Implementation
-- [ ] **Left Sidebar**: Create navigation shortcuts (Friends, Memories, Saved, Groups, Video, Marketplace) with pixel-perfect icons.
-- [ ] **Story Reel**: Implement the horizontal scrollable story carousel with zoom-in effects.
-- [ ] **Create Post Widget**: Build the "What's on your mind, Kola?" input box with modal trigger.
-- [ ] **Feed Stream**: Develop the infinite scroll feed component rendering rich posts (Text, Image, Video) with Like, Comment, and Share action buttons.
-- [ ] **Right Sidebar**: Implement the Contacts list for messaging and "Sponsored" section.
+## Phase 9: Interactive Features & Overlays
+- [ ] **Create Post Modal**: A functional popup to write posts, tag friends, and add feelings.
+- [ ] **Story Viewer**: Full-screen immersive story viewer with progress bar.
+- [ ] **Messenger Widget**: Floating chat windows at the bottom right.
+- [ ] **Notifications Dropdown**: Rich notification list in the navbar.
 
-## Phase 3: User Profile (Kola Shanakar)
-- [ ] **Profile Header**: Build the massive Cover Photo, Profile Picture (with overlap), and "Edit Profile" controls.
-- [ ] **Profile Navigation**: Tabs for Posts, About, Friends, Photos, Videos, Check-ins.
-- [ ] **Intro Section**: "Bio", "Details" (Work, Education, Location), and Hobbies.
-- [ ] **Photos & Friends Grid**: Visual grids showcasing recent photos and friend connections.
-- [ ] **Profile Feed**: Filtered view of posts created specifically by Kola Shanakar.
-
-## Phase 4: Authentication & Additional Pages
-- [ ] **Login Page**: Replicate the iconic split-screen login page (Facebook branding on left, Login form/Create Account on right).
-- [ ] **Register Modal**: The "Sign Up" popup with date of birth and gender selectors.
-- [ ] **Friends Page**: Grid view of friend requests and suggestions.
-- [ ] **Marketplace/Watch**: Placeholder layouts to demonstrate the multi-page architecture requested (15+ pages structure).
-
-## Phase 5: Interaction & Data Mocking
-- [ ] **Mock Data Engine**: Create a robust `mock.js` file containing "Kola Shanakar's" profile details, 20+ sample posts, 15+ mock friends, stories, and marketplace items.
-- [ ] **Interactivity**: 
-    - Functioning "Like" buttons with state.
-    - Modal opening/closing for "Create Post".
-    - Tab switching on Profile.
-    - Hover effects on all interactive elements (grey bubbles).
-- [ ] **Responsive Polish**: Ensure mobile view collapses sidebars and adapts the navbar.
-
-## Future Phases (Backend Integration - Placeholder)
-- [ ] Define API schemas for User, Post, Comment.
-- [ ] Connect Authentication to FastAPI.
-- [ ] Replace `mock.js` with actual API calls.
+## Phase 10: Polish & Navigation
+- [ ] **Menu Grid**: The 9-dot menu dropdown showing all Facebook apps.
+- [ ] **Settings**: A clean settings page layout.
+- [ ] **Mobile Responsiveness**: ensure all new pages work on mobile.
