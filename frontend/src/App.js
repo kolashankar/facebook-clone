@@ -4,11 +4,11 @@ import Layout from './Layout';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+import Friends from './pages/Friends';
+import Marketplace from './pages/Marketplace';
 
 // Placeholder components
-const Friends = () => <div className="p-4 bg-white rounded-lg shadow">Friends Page</div>;
 const Video = () => <div className="p-4 bg-white rounded-lg shadow">Video Watch Page</div>;
-const Marketplace = () => <div className="p-4 bg-white rounded-lg shadow">Marketplace Page</div>;
 const Groups = () => <div className="p-4 bg-white rounded-lg shadow">Groups Feed</div>;
 const Gaming = () => <div className="p-4 bg-white rounded-lg shadow">Gaming Page</div>;
 const Memories = () => <div className="p-4 bg-white rounded-lg shadow">Memories Page</div>;
@@ -28,8 +28,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="profile" element={<Profile />} />
           <Route path="friends" element={<Friends />} />
-          <Route path="video" element={<Video />} />
           <Route path="marketplace" element={<Marketplace />} />
+          <Route path="video" element={<Video />} />
           <Route path="groups" element={<Groups />} />
           <Route path="gaming" element={<Gaming />} />
           <Route path="memories" element={<Memories />} />
