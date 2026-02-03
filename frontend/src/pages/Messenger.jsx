@@ -76,7 +76,7 @@ const Messenger = () => {
                     <div className="flex flex-col items-center mt-4 mb-8">
                         <img src={activeChat.img} className="w-24 h-24 rounded-full object-cover mb-2" alt="" />
                         <h3 className="font-bold text-xl">{activeChat.name}</h3>
-                        <p className="text-gray-500 text-sm">You're friends on Facebook</p>
+                        <p className="text-gray-500 text-sm">You&apos;re friends on Facebook</p>
                     </div>
 
                     {messages.map(msg => (
