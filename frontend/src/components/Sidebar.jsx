@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Users, Store, MonitorPlay, Clock, Bookmark, Calendar, ChevronDown } from 'lucide-react';
+import { Users, Store, MonitorPlay, Clock, Bookmark, Calendar, ChevronDown, Gamepad2, Flag, UserGroup } from 'lucide-react'; // Fixed icons
 import { currentUser } from '../mock';
 
 const Sidebar = () => {
@@ -13,10 +13,13 @@ const Sidebar = () => {
             
             <SidebarItem to="/friends" icon={<Users size={28} className="text-[#1877F2]" />} text="Friends" />
             <SidebarItem to="/marketplace" icon={<Store size={28} className="text-[#1877F2]" />} text="Marketplace" />
+            <SidebarItem to="/groups" icon={<Users size={28} className="text-[#1877F2] p-0.5 border-2 border-[#1877F2] rounded-full" />} text="Groups" /> 
             <SidebarItem to="/video" icon={<MonitorPlay size={28} className="text-[#1877F2]" />} text="Video" />
             <SidebarItem to="/memories" icon={<Clock size={28} className="text-[#1877F2]" />} text="Memories" />
             <SidebarItem to="/saved" icon={<Bookmark size={28} className="text-[#A033FF]" fill="#A033FF" />} text="Saved" />
+            <SidebarItem to="/pages" icon={<Flag size={28} className="text-[#F02849]" fill="#F02849" />} text="Pages" />
             <SidebarItem to="/events" icon={<Calendar size={28} className="text-[#F02849]" />} text="Events" />
+            <SidebarItem to="/gaming" icon={<Gamepad2 size={28} className="text-[#1877F2]" />} text="Gaming" />
             
             <div className="flex items-center gap-3 p-2 hover:bg-black/5 rounded-lg transition-colors cursor-pointer">
                 <div className="w-9 h-9 bg-[#E4E6EB] rounded-full flex items-center justify-center">
