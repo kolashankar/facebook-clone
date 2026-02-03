@@ -109,6 +109,16 @@ export const videos = [
         videoUrl: "https://www.youtube.com/embed/w7ejDZ8SWv8?autoplay=0&mute=1",
         avatar: "https://picsum.photos/50?random=2"
     },
+    {
+        id: 3,
+        title: "Top 10 Places to Visit in India 🇮🇳",
+        channel: "Travel Diaries",
+        views: "2.5M views",
+        time: "2 weeks ago",
+        videoUrl: "https://www.youtube.com/embed/IgAnj6r1O48?autoplay=0&mute=1",
+        avatar: "https://picsum.photos/50?random=3"
+    }
+];
 
 export const groups = [
     { id: 1, name: "React Developers India", members: "25K members", img: "https://picsum.photos/200/200?random=20", joined: true },
