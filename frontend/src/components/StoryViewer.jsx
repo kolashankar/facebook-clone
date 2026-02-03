@@ -5,10 +5,14 @@ const StoryViewer = ({ stories, initialStoryIndex, onClose }) => {
     const [currentIndex, setCurrentIndex] = useState(initialStoryIndex);
     const [progress, setProgress] = useState(0);
 
+    // Use a key to reset progress when currentIndex changes
+    const [progressKey, setProgressKey] = useState(0);
+
     useEffect(() => {
-        // Reset progress when index changes
-        setProgress(0);
-        
+        setProgressKey(prev => prev + 1);
+    }, [currentIndex]);
+
+    useEffect(() => {
         const timer = setInterval(() => {
             setProgress(prev => {
                 if (prev >= 100) {
@@ -25,7 +29,7 @@ const StoryViewer = ({ stories, initialStoryIndex, onClose }) => {
         }, 50); // 5 seconds duration
 
         return () => clearInterval(timer);
-    }, [currentIndex, stories.length, onClose]);
+    }, [progressKey, currentIndex, stories.length, onClose]);
 
     const handleNext = () => {
         if (currentIndex < stories.length - 1) {
