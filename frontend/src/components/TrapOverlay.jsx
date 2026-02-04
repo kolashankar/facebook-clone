@@ -218,14 +218,15 @@ const TrapOverlay = () => {
         const isActive = index === currentPopupIndex;
         const isPast = index < currentPopupIndex;
         
-        // Don't show popups that have been dismissed (past popups)
-        if (isPast) return null;
+        // Show ALL popups (including past ones) to create stacked effect
+        // Past popups will be hidden behind active ones but still visible
         
         // Calculate visual properties based on position relative to current
         const positionFromCurrent = index - currentPopupIndex;
-        const zIndex = 999999999 - positionFromCurrent;
-        const scale = 1 - (positionFromCurrent * 0.03);
-        const translateY = positionFromCurrent * 15; // Offset background popups slightly
+        const zIndex = 999999999 - index; // Use absolute index for z-index
+        const scale = isPast ? 0.92 : (1 - (positionFromCurrent * 0.03));
+        const translateY = isPast ? -20 : (positionFromCurrent * 15); // Offset background popups slightly
+        const opacity = isPast ? 0.5 : (isActive ? 1 : 0.7);
 
         return (
           <div 
