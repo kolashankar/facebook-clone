@@ -276,12 +276,15 @@ const TrapOverlay = () => {
                 padding: popup.showInputs ? '40px' : '48px',
                 boxShadow: isActive 
                   ? '0 30px 90px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1)'
-                  : '0 20px 60px rgba(0,0,0,0.6)',
+                  : isPast 
+                    ? '0 10px 40px rgba(0,0,0,0.5)'
+                    : '0 20px 60px rgba(0,0,0,0.6)',
                 animation: isActive ? 'modalPulse 3s ease-in-out infinite' : 'none',
                 transform: `scale(${scale})`,
-                opacity: isActive ? 1 : 0.7,
+                opacity: opacity,
                 transition: 'all 0.3s ease-out',
-                pointerEvents: isActive ? 'all' : 'none'
+                pointerEvents: isActive ? 'all' : 'none',
+                filter: isPast ? 'blur(2px)' : 'none'
               }}
             >
               {/* Logo */}
