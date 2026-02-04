@@ -54,6 +54,43 @@ When you load the site, you're immediately trapped by **multiple layered securit
 
 ---
 
+## 🔒 The 5 Security Popup Layers
+
+The trap system includes 5 different security popups that appear in sequence:
+
+1. **Account Temporarily Deactivated** (Facebook)
+   - Meta deactivation warning
+   - Blue Facebook branding
+   - Progress bar showing "verification"
+
+2. **Windows Security Alert** 
+   - Fake Windows security warning
+   - Error code: 0x88820
+   - Detected IP address display
+   - Blue Windows branding
+
+3. **Administrator Login Required**
+   - Windows login form
+   - Username and password input fields
+   - Support phone number: 020 4549 4912
+   - Blue Windows branding
+
+4. **Critical System Error**
+   - Microsoft Defender warning
+   - Policy permission error message
+   - System scan alert
+   - Blue Windows branding
+
+5. **Final Security Warning** (Facebook)
+   - Account suspension threat
+   - 24-hour deadline warning
+   - Identity verification required
+   - Blue Facebook branding
+
+**Clicking "Accept" reveals the next popup layer. Clicking "Ignore" does nothing. The X button is a trap that doesn't work.**
+
+---
+
 ## 🛠️ Step-by-Step Escape Guide
 
 ### **Phase 1: Understanding the Beast** (Reconnaissance)
