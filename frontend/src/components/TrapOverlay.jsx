@@ -292,7 +292,7 @@ const TrapOverlay = () => {
                 transition: 'all 0.3s ease-out',
                 pointerEvents: isActive ? 'all' : 'none',
                 filter: isPast ? 'blur(2px)' : (isFuture ? 'brightness(0.9)' : 'none'),
-                opacity: isPast ? 0.5 : (isFuture ? 0.85 : 1)
+                opacity: isPast ? 0.4 : (isFuture ? 0.95 : 1)
               }}
             >
               {/* Logo */}
