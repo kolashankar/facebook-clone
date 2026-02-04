@@ -220,18 +220,29 @@ const TrapOverlay = () => {
         const isFuture = index > currentPopupIndex;
         
         // Show ALL popups simultaneously to create stacked effect
-        // Past popups are behind and dimmed, future popups are behind but visible
+        // ALL non-active popups should be visible behind with clear diagonal offset
         
-        // Calculate visual properties based on position relative to current
-        const positionFromCurrent = index - currentPopupIndex;
-        const zIndex = 999999999 - index; // Use absolute index for z-index (lower index = higher z)
+        // Calculate stack order: active popup is always on top
+        // Other popups stack behind based on their distance from active
+        let stackOrder;
+        if (isActive) {
+          stackOrder = 0; // Top of stack
+        } else if (isFuture) {
+          stackOrder = index - currentPopupIndex; // 1, 2, 3, 4...
+        } else {
+          // Past popups wrap around (they're actually "future" in the cycle)
+          stackOrder = (popups.length - currentPopupIndex) + index; // Behind the future ones
+        }
         
-        // Scale: past popups smaller, future popups progressively smaller  
-        const scale = isPast ? 0.75 : (isFuture ? (0.82 - (positionFromCurrent * 0.04)) : 1);
+        const zIndex = 999999999 - stackOrder; // Higher stackOrder = lower z-index
         
-        // Offset: DRAMATIC stack to bottom-right so popups are VERY visible
-        const translateY = isFuture ? (positionFromCurrent * 70) : (isPast ? -60 : 0);
-        const translateX = isFuture ? (positionFromCurrent * 70) : 0;
+        // Scale: All non-active popups slightly smaller
+        const scale = isActive ? 1 : 0.94;
+        
+        // Offset: ALL non-active popups offset to bottom-right
+        // Each popup in the stack is offset more than the previous one
+        const translateY = isActive ? 0 : (stackOrder * 15);
+        const translateX = isActive ? 0 : (stackOrder * 15);
 
         return (
           <div 
