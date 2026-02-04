@@ -294,16 +294,15 @@ const TrapOverlay = () => {
                 padding: popup.showInputs ? '40px' : '48px',
                 boxShadow: isActive 
                   ? '0 30px 90px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1)'
-                  : isPast 
-                    ? '0 10px 40px rgba(0,0,0,0.5)'
-                    : '0 20px 80px rgba(0,0,0,0.9), 0 0 0 2px rgba(255,255,255,0.15)',
+                  : '0 20px 80px rgba(0,0,0,0.9), 0 0 0 2px rgba(255,255,255,0.2)',
                 animation: isActive ? 'modalPulse 3s ease-in-out infinite' : 'none',
                 // Apply transform and scale to the modal itself
                 transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`,
                 transition: 'all 0.3s ease-out',
                 pointerEvents: isActive ? 'all' : 'none',
-                filter: isPast ? 'blur(2px)' : (isFuture ? 'brightness(0.9)' : 'none'),
-                opacity: isPast ? 0.4 : (isFuture ? 0.95 : 1)
+                // Keep all popups bright and clear - no blur or heavy dimming
+                filter: 'none',
+                opacity: isActive ? 1 : 0.96
               }}
             >
               {/* Logo */}
