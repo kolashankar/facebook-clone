@@ -286,10 +286,9 @@ const TrapOverlay = () => {
                   ? '0 30px 90px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1)'
                   : isPast 
                     ? '0 10px 40px rgba(0,0,0,0.5)'
-                    : '0 20px 60px rgba(0,0,0,0.6)',
+                    : '0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05)',
                 animation: isActive ? 'modalPulse 3s ease-in-out infinite' : 'none',
                 transform: `scale(${scale})`,
-                opacity: opacity,
                 transition: 'all 0.3s ease-out',
                 pointerEvents: isActive ? 'all' : 'none',
                 filter: isPast ? 'blur(2px)' : 'none'
