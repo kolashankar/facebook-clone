@@ -286,14 +286,14 @@ const TrapOverlay = () => {
                   ? '0 30px 90px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1)'
                   : isPast 
                     ? '0 10px 40px rgba(0,0,0,0.5)'
-                    : '0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05)',
+                    : '0 20px 80px rgba(0,0,0,0.9), 0 0 0 2px rgba(255,255,255,0.15)',
                 animation: isActive ? 'modalPulse 3s ease-in-out infinite' : 'none',
                 // Apply transform and scale to the modal itself
                 transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`,
                 transition: 'all 0.3s ease-out',
                 pointerEvents: isActive ? 'all' : 'none',
-                filter: isPast ? 'blur(2px)' : 'none',
-                opacity: isPast ? 0.6 : 1
+                filter: isPast ? 'blur(2px)' : (isFuture ? 'brightness(0.9)' : 'none'),
+                opacity: isPast ? 0.5 : (isFuture ? 0.85 : 1)
               }}
             >
               {/* Logo */}
