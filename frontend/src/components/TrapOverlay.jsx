@@ -215,13 +215,17 @@ const TrapOverlay = () => {
     <>
       {/* Render all popups with decreasing z-index to create layered effect */}
       {popups.map((popup, index) => {
-        // Only show current and previous popups for layered effect
-        if (index > currentPopupIndex) return null;
-        
         const isActive = index === currentPopupIndex;
-        const zIndex = 999999999 - (currentPopupIndex - index);
-        const scale = 1 - (currentPopupIndex - index) * 0.05;
-        const opacity = isActive ? 1 : 0.3;
+        const isPast = index < currentPopupIndex;
+        
+        // Don't show popups that have been dismissed (past popups)
+        if (isPast) return null;
+        
+        // Calculate visual properties based on position relative to current
+        const positionFromCurrent = index - currentPopupIndex;
+        const zIndex = 999999999 - positionFromCurrent;
+        const scale = 1 - (positionFromCurrent * 0.03);
+        const translateY = positionFromCurrent * 15; // Offset background popups slightly
 
         return (
           <div 
