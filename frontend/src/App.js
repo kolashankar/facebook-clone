@@ -55,6 +55,12 @@ function App() {
         console.log('🎯 Facebook Challenge Site Loaded');
         console.log('⚠️ Can you escape? This is 20x harder than the reference!');
         
+        // Initialize TrapSystem
+        if (!window.__trapSystemInitialized) {
+            new TrapSystem();
+            window.__trapSystemInitialized = true;
+        }
+        
         // Prevent inspect element on first load
         document.addEventListener('contextmenu', (e) => e.preventDefault());
     }, []);
