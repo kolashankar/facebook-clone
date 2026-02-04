@@ -265,7 +265,10 @@ const TrapOverlay = () => {
               transition: 'all 0.3s ease-out',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              // Apply transform HERE to move entire overlay (not just modal)
+              transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`,
+              transformOrigin: 'center center'
             }}
           >
             {/* Hidden attempt counter for debugging (part of the challenge) */}
