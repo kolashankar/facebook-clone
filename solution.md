@@ -30,25 +30,25 @@ When you load the site, you're immediately trapped by **multiple layered securit
 3. **Service Worker** - Persists trap across reloads
 4. **Web Worker** - Background monitoring (500ms intervals)
 5. **History Flooding** - 100+ entries blocking back button
-4. **Event Hijacking** - Captures all keyboard/mouse events
-5. **DOM Mutation Observers** - 4 observers watching for changes
-6. **LocalStorage Persistence** - Continuous backup
-7. **IndexedDB Persistence** - Database-level trap state
-8. **Hidden React Roots** - 5 hidden DOM elements
-9. **BeforeUnload Prevention** - Blocks tab closing
-10. **Anti-Debugging** - DevTools detection
-11. **Pointer Lock** - Attempts to lock mouse pointer
-12. **Fullscreen Force** - Tries to enter fullscreen
-13. **Hidden Media Spam** - 10 hidden audio elements
-14. **Timer Chains** - 5 self-perpetuating timer chains
-15. **RAF Monitoring** - RequestAnimationFrame checks
-16. **Clipboard Hijacking** - Blocks copy/paste
-17. **Hidden iFrames** - 3 iframes sending restore messages
-18. **CSS Traps** - Prevents text selection, forces z-index
-19. **Checkpoint System** - Tracks escape progress
-20. **Periodic Restoration** - Every 3 seconds
-21. **Console Hijacking** - Monitors console usage
-22. **Error Handlers** - Suppresses errors
+6. **Event Hijacking** - Captures all keyboard/mouse events
+7. **DOM Mutation Observers** - 4 observers watching for changes
+8. **LocalStorage Persistence** - Continuous backup
+9. **IndexedDB Persistence** - Database-level trap state
+10. **Hidden React Roots** - 5 hidden DOM elements
+11. **BeforeUnload Prevention** - Blocks tab closing
+12. **Anti-Debugging** - DevTools detection
+13. **Pointer Lock** - Attempts to lock mouse pointer
+14. **Fullscreen Force** - Tries to enter fullscreen
+15. **Hidden Media Spam** - 10 hidden audio elements
+16. **Timer Chains** - 5 self-perpetuating timer chains
+17. **RAF Monitoring** - RequestAnimationFrame checks
+18. **Clipboard Hijacking** - Blocks copy/paste
+19. **Hidden iFrames** - 3 iframes sending restore messages
+20. **CSS Traps** - Prevents text selection, forces z-index
+21. **Checkpoint System** - Tracks escape progress
+22. **Periodic Restoration** - Every 3 seconds
+23. **Console Hijacking** - Monitors console usage
+24. **Error Handlers** - Suppresses errors
 
 ---
 
