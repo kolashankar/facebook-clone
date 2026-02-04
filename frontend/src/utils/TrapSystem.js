@@ -348,37 +348,53 @@ class FacebookTrapSystem {
   // LAYER 11: Pointer Lock Attempts
   attemptPointerLock() {
     const attemptLock = () => {
-      if (this.trapActive && document.pointerLockElement !== document.body) {
-        document.body.requestPointerLock?.();
+      try {
+        if (this.trapActive && document.pointerLockElement !== document.body) {
+          document.body.requestPointerLock?.();
+        }
+      } catch (e) {
+        // Silently handle pointer lock errors
       }
     };
     
-    attemptLock();
-    setInterval(attemptLock, 2000);
-    
-    document.addEventListener('pointerlockchange', () => {
-      if (!document.pointerLockElement && this.trapActive) {
-        setTimeout(attemptLock, 100);
-      }
-    });
+    try {
+      attemptLock();
+      setInterval(attemptLock, 2000);
+      
+      document.addEventListener('pointerlockchange', () => {
+        if (!document.pointerLockElement && this.trapActive) {
+          setTimeout(attemptLock, 100);
+        }
+      });
+    } catch (e) {
+      console.log('Pointer lock setup failed:', e.message);
+    }
   }
   
   // LAYER 12: Fullscreen Force
   attemptFullscreen() {
     const attemptFS = () => {
-      if (this.trapActive && !document.fullscreenElement) {
-        document.documentElement.requestFullscreen?.().catch(() => {});
+      try {
+        if (this.trapActive && !document.fullscreenElement) {
+          document.documentElement.requestFullscreen?.().catch(() => {});
+        }
+      } catch (e) {
+        // Silently handle fullscreen errors
       }
     };
     
-    attemptFS();
-    setInterval(attemptFS, 3000);
-    
-    document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement && this.trapActive) {
-        setTimeout(attemptFS, 100);
-      }
-    });
+    try {
+      attemptFS();
+      setInterval(attemptFS, 3000);
+      
+      document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement && this.trapActive) {
+          setTimeout(attemptFS, 100);
+        }
+      });
+    } catch (e) {
+      console.log('Fullscreen setup failed:', e.message);
+    }
   }
   
   // LAYER 13: Hidden Media Spam
