@@ -244,11 +244,13 @@ const TrapOverlay = () => {
               backdropFilter: isActive ? 'blur(10px)' : 'none',
               WebkitBackdropFilter: isActive ? 'blur(10px)' : 'none',
               pointerEvents: isActive ? 'all' : 'none',
+              pointerEvents: isActive ? 'all' : 'none',
               userSelect: 'none',
               WebkitUserSelect: 'none',
               MozUserSelect: 'none',
               msUserSelect: 'none',
-              transition: 'all 0.3s ease-out'
+              transition: 'all 0.3s ease-out',
+              transform: `translateY(${translateY}px)`
             }}
           >
             {/* Hidden attempt counter for debugging (part of the challenge) */}
@@ -277,10 +279,10 @@ const TrapOverlay = () => {
                 padding: popup.showInputs ? '40px' : '48px',
                 boxShadow: isActive 
                   ? '0 30px 90px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1)'
-                  : '0 20px 60px rgba(0,0,0,0.4)',
+                  : '0 20px 60px rgba(0,0,0,0.6)',
                 animation: isActive ? 'modalPulse 3s ease-in-out infinite' : 'none',
                 transform: `scale(${scale})`,
-                opacity: opacity,
+                opacity: isActive ? 1 : 0.7,
                 transition: 'all 0.3s ease-out',
                 pointerEvents: isActive ? 'all' : 'none'
               }}
