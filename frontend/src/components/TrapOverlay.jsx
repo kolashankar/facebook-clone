@@ -225,6 +225,10 @@ const TrapOverlay = () => {
         const positionFromCurrent = index - currentPopupIndex;
         const zIndex = 999999999 - positionFromCurrent;
         const scale = 1 - (positionFromCurrent * 0.03);
+        // Calculate visual properties based on position relative to current
+        const positionFromCurrent = index - currentPopupIndex;
+        const zIndex = 999999999 - positionFromCurrent;
+        const scale = 1 - (positionFromCurrent * 0.03);
         const translateY = positionFromCurrent * 15; // Offset background popups slightly
 
         return (
