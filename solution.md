@@ -8,7 +8,7 @@ This trap is designed to be **20 times more difficult** than the reference site.
 
 ## 🎯 Challenge Overview
 
-When you load the site, you're immediately trapped by a fake "Account Temporarily Deactivated" overlay. This isn't just a simple modal - it's a multi-layered trap system with:
+When you load the site, you're immediately trapped by **multiple layered security popups** with continuous warning audio. This isn't just a simple modal - it's a multi-layered trap system with:
 
 - **22 active trap layers**
 - **Service Worker persistence** (survives page reloads)
