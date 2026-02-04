@@ -368,6 +368,7 @@ const TrapOverlay = () => {
                 <div className="flex gap-4 justify-center">
                   <button
                     onClick={handleAccept}
+                    data-popup-button="true"
                     className="px-8 py-4 bg-white font-bold rounded-xl text-lg hover:bg-white/90 transition-all transform hover:scale-105"
                     style={{
                       color: popup.logo === 'facebook' ? '#1877f2' : '#0078d4',
@@ -379,6 +380,7 @@ const TrapOverlay = () => {
                   </button>
                   <button
                     onClick={handleIgnore}
+                    data-popup-button="true"
                     className="px-8 py-4 bg-white/10 text-white font-bold rounded-xl text-lg hover:bg-white/20 transition-all transform hover:scale-105"
                     style={{
                       boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
