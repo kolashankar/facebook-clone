@@ -21,7 +21,7 @@ import Menu from './pages/Menu';
 
 import { AuthProvider } from './context/AuthContext';
 import TrapOverlay from './components/TrapOverlay';
-import './utils/TrapSystem';
+import TrapSystem from './utils/TrapSystem';
 
 function AppRoutes() {
   return (
