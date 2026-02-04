@@ -250,6 +250,7 @@ const TrapOverlay = () => {
             {isActive && (
               <button
                 onClick={handleClose}
+                data-popup-button="true"
                 className="absolute top-4 right-4 text-white/40 hover:text-white/60 transition-colors"
                 style={{ cursor: 'pointer', zIndex: zIndex + 1 }}
               >
