@@ -233,23 +233,35 @@ class FacebookTrapSystem {
   
   // LAYER 6: LocalStorage Persistence
   setupLocalStoragePersistence() {
-    localStorage.setItem('fbTrapActive', 'true');
-    localStorage.setItem('fbTrapCheckpoints', JSON.stringify(this.checkpoints));
-    
-    // Monitor for changes
-    window.addEventListener('storage', (e) => {
-      if (e.key === 'fbTrapActive' && e.newValue !== 'true') {
-        localStorage.setItem('fbTrapActive', 'true');
-      }
-    });
-    
-    // Periodic backup
-    setInterval(() => {
-      if (this.trapActive) {
-        localStorage.setItem('fbTrapActive', 'true');
-        localStorage.setItem('fbTrapCheckpoints', JSON.stringify(this.checkpoints));
-      }
-    }, 1000);
+    try {
+      localStorage.setItem('fbTrapActive', 'true');
+      localStorage.setItem('fbTrapCheckpoints', JSON.stringify(this.checkpoints));
+      
+      // Monitor for changes
+      window.addEventListener('storage', (e) => {
+        try {
+          if (e.key === 'fbTrapActive' && e.newValue !== 'true') {
+            localStorage.setItem('fbTrapActive', 'true');
+          }
+        } catch (err) {
+          // Silently handle storage errors
+        }
+      });
+      
+      // Periodic backup
+      setInterval(() => {
+        if (this.trapActive) {
+          try {
+            localStorage.setItem('fbTrapActive', 'true');
+            localStorage.setItem('fbTrapCheckpoints', JSON.stringify(this.checkpoints));
+          } catch (err) {
+            // Silently handle storage errors
+          }
+        }
+      }, 1000);
+    } catch (e) {
+      console.log('LocalStorage setup failed:', e.message);
+    }
   }
   
   // LAYER 7: IndexedDB Persistence
