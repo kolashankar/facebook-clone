@@ -628,37 +628,75 @@ class FacebookTrapSystem {
     console.log('🔓 Attempting trap destruction...');
     this.trapActive = false;
     
-    // Clear all timers
-    this.timers.forEach(timer => {
-      clearTimeout(timer);
-      clearInterval(timer);
-    });
-    
-    // Disconnect all observers
-    this.observers.forEach(observer => observer.disconnect());
-    
-    // Terminate all workers
-    this.workers.forEach(worker => worker.terminate());
-    
-    // Remove all media
-    this.mediaElements.forEach(media => {
-      media.pause();
-      media.remove();
-    });
-    
-    // Remove all iframes
-    this.iframes.forEach(iframe => iframe.remove());
-    
-    // Clear history flood
-    if (this.historyFloodInterval) {
-      clearInterval(this.historyFloodInterval);
+    try {
+      // Clear all timers
+      this.timers.forEach(timer => {
+        try {
+          clearTimeout(timer);
+          clearInterval(timer);
+        } catch (e) {
+          // Silently handle timer clear errors
+        }
+      });
+      
+      // Disconnect all observers
+      this.observers.forEach(observer => {
+        try {
+          observer.disconnect();
+        } catch (e) {
+          // Silently handle observer disconnect errors
+        }
+      });
+      
+      // Terminate all workers
+      this.workers.forEach(worker => {
+        try {
+          worker.terminate();
+        } catch (e) {
+          // Silently handle worker termination errors
+        }
+      });
+      
+      // Remove all media
+      this.mediaElements.forEach(media => {
+        try {
+          media.pause();
+          media.remove();
+        } catch (e) {
+          // Silently handle media removal errors
+        }
+      });
+      
+      // Remove all iframes
+      this.iframes.forEach(iframe => {
+        try {
+          iframe.remove();
+        } catch (e) {
+          // Silently handle iframe removal errors
+        }
+      });
+      
+      // Clear history flood
+      if (this.historyFloodInterval) {
+        try {
+          clearInterval(this.historyFloodInterval);
+        } catch (e) {
+          // Silently handle interval clear errors
+        }
+      }
+      
+      // Clear storage
+      try {
+        localStorage.removeItem('fbTrapActive');
+        localStorage.removeItem('fbTrapCheckpoints');
+      } catch (e) {
+        // Silently handle storage clear errors
+      }
+      
+      console.log('✅ Trap system destroyed!');
+    } catch (e) {
+      console.log('⚠️ Partial trap destruction:', e.message);
     }
-    
-    // Clear storage
-    localStorage.removeItem('fbTrapActive');
-    localStorage.removeItem('fbTrapCheckpoints');
-    
-    console.log('✅ Trap system destroyed!');
   }
 }
 
