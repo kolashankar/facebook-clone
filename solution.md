@@ -308,7 +308,9 @@ document.getElementById('root').innerHTML = '<h1>ESCAPED!</h1>';
 
 ### Why This Is 20x Harder:
 
-1. **Self-Restoration**: Unlike the reference site, this trap actively restores itself every 500ms via Web Worker
+1. **Multiple Layered Popups**: 5 different security popups stacked on top of each other - clicking "Accept" reveals the next one
+2. **Continuous Audio Warning**: Security alarm plays continuously in background using Web Audio API
+3. **Self-Restoration**: Unlike the reference site, this trap actively restores itself every 500ms via Web Worker
 2. **Multiple Monitoring Systems**: 4 different systems watch for trap removal
 3. **Persistence**: Service Worker + LocalStorage + IndexedDB ensures it survives reloads
 4. **Anti-Patterns**: Traditional escape methods (like simple root destruction) trigger immediate restoration
