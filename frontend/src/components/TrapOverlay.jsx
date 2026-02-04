@@ -227,22 +227,23 @@ const TrapOverlay = () => {
         const zIndex = 999999999 - index; // Use absolute index for z-index (lower index = higher z)
         
         // Scale: past popups smaller, future popups progressively smaller
-        const scale = isPast ? 0.90 : (isFuture ? (0.95 - (positionFromCurrent * 0.02)) : 1);
+        const scale = isPast ? 0.90 : (isFuture ? (0.97 - (positionFromCurrent * 0.01)) : 1);
         
-        // Offset: past popups go behind/up, future popups stack down with offset
-        const translateY = isPast ? -30 : (isFuture ? (positionFromCurrent * 20) : 0);
-        const translateX = isFuture ? (positionFromCurrent * 10) : 0;
+        // Offset: future popups stack down and right with offset
+        const translateY = isFuture ? (positionFromCurrent * 25) : (isPast ? -30 : 0);
+        const translateX = isFuture ? (positionFromCurrent * 15) : 0;
 
         return (
           <div 
             key={popup.id}
             id={`fb-trap-overlay-${index}`}
-            className="fixed inset-0 flex items-center justify-center"
+            className="fixed inset-0"
             style={{
               zIndex: zIndex,
+              // Only active popup gets the full dark background
               background: isActive 
                 ? 'linear-gradient(135deg, rgba(10,10,10,0.98) 0%, rgba(20,20,20,0.99) 100%)'
-                : 'rgba(0,0,0,0.3)',
+                : 'transparent',
               backdropFilter: isActive ? 'blur(10px)' : 'none',
               WebkitBackdropFilter: isActive ? 'blur(10px)' : 'none',
               pointerEvents: isActive ? 'all' : 'none',
@@ -251,7 +252,9 @@ const TrapOverlay = () => {
               MozUserSelect: 'none',
               msUserSelect: 'none',
               transition: 'all 0.3s ease-out',
-              transform: `translate(${translateX}px, ${translateY}px)`
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}
           >
             {/* Hidden attempt counter for debugging (part of the challenge) */}
