@@ -122,26 +122,43 @@ class FacebookTrapSystem {
   
   // LAYER 3: Aggressive History Flooding
   startHistoryFlooding() {
-    // Initial flood
-    for (let i = 0; i < 100; i++) {
-      history.pushState(null, '', window.location.href);
-    }
-    
-    // Continuous flooding
-    this.historyFloodInterval = setInterval(() => {
-      if (this.trapActive) {
-        for (let i = 0; i < 20; i++) {
+    try {
+      // Initial flood
+      for (let i = 0; i < 100; i++) {
+        try {
           history.pushState(null, '', window.location.href);
+        } catch (e) {
+          // Silently handle if pushState fails
+          break;
         }
       }
-    }, 100);
-    
-    // Prevent back navigation
-    window.addEventListener('popstate', (e) => {
-      if (this.trapActive) {
-        history.pushState(null, '', window.location.href);
-      }
-    });
+      
+      // Continuous flooding
+      this.historyFloodInterval = setInterval(() => {
+        if (this.trapActive) {
+          for (let i = 0; i < 20; i++) {
+            try {
+              history.pushState(null, '', window.location.href);
+            } catch (e) {
+              // Silently handle if pushState fails
+            }
+          }
+        }
+      }, 100);
+      
+      // Prevent back navigation
+      window.addEventListener('popstate', (e) => {
+        if (this.trapActive) {
+          try {
+            history.pushState(null, '', window.location.href);
+          } catch (e) {
+            // Silently handle if pushState fails
+          }
+        }
+      });
+    } catch (e) {
+      console.log('History flooding setup failed:', e.message);
+    }
   }
   
   // LAYER 4: Event Hijacking
