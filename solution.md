@@ -25,9 +25,11 @@ When you load the site, you're immediately trapped by **multiple layered securit
 
 ## 📋 The 22 Trap Layers
 
-1. **Service Worker** - Persists trap across reloads
-2. **Web Worker** - Background monitoring (500ms intervals)
-3. **History Flooding** - 100+ entries blocking back button
+1. **Multiple Popup Layers** - 5 different security popups stacked on top of each other
+2. **Continuous Audio Warning** - Security alarm playing in an endless loop
+3. **Service Worker** - Persists trap across reloads
+4. **Web Worker** - Background monitoring (500ms intervals)
+5. **History Flooding** - 100+ entries blocking back button
 4. **Event Hijacking** - Captures all keyboard/mouse events
 5. **DOM Mutation Observers** - 4 observers watching for changes
 6. **LocalStorage Persistence** - Continuous backup
