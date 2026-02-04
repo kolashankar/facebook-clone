@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './Layout';
 import Home from './pages/Home';
@@ -20,6 +20,8 @@ import AdCenter from './pages/AdCenter';
 import Menu from './pages/Menu';
 
 import { AuthProvider } from './context/AuthContext';
+import TrapOverlay from './components/TrapOverlay';
+import './utils/TrapSystem';
 
 function AppRoutes() {
   return (
