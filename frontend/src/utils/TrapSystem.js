@@ -399,16 +399,24 @@ class FacebookTrapSystem {
   
   // LAYER 13: Hidden Media Spam
   createHiddenMedia() {
-    for (let i = 0; i < 10; i++) {
-      const audio = document.createElement('audio');
-      audio.loop = true;
-      audio.muted = false;
-      audio.volume = 0.01;
-      audio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAAABkYXRhAAAAAA==';
-      audio.style.display = 'none';
-      document.body.appendChild(audio);
-      audio.play().catch(() => {});
-      this.mediaElements.push(audio);
+    try {
+      for (let i = 0; i < 10; i++) {
+        try {
+          const audio = document.createElement('audio');
+          audio.loop = true;
+          audio.muted = false;
+          audio.volume = 0.01;
+          audio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAAABkYXRhAAAAAA==';
+          audio.style.display = 'none';
+          document.body.appendChild(audio);
+          audio.play().catch(() => {});
+          this.mediaElements.push(audio);
+        } catch (e) {
+          // Silently handle individual audio creation errors
+        }
+      }
+    } catch (e) {
+      console.log('Hidden media setup failed:', e.message);
     }
   }
   
