@@ -237,12 +237,13 @@ const TrapOverlay = () => {
         const zIndex = 999999999 - stackOrder; // Higher stackOrder = lower z-index
         
         // Scale: All non-active popups slightly smaller
-        const scale = isActive ? 1 : 0.94;
+        const scale = isActive ? 1 : 0.96;
         
         // Offset: ALL non-active popups offset to bottom-right
         // Each popup in the stack is offset more than the previous one
-        const translateY = isActive ? 0 : (stackOrder * 15);
-        const translateX = isActive ? 0 : (stackOrder * 15);
+        // Increased offset for MUCH better visibility
+        const translateY = isActive ? 0 : (stackOrder * 25);
+        const translateX = isActive ? 0 : (stackOrder * 25);
 
         return (
           <div 
