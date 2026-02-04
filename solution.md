@@ -154,7 +154,7 @@ try {
             <h1 style="font-size:96px;margin:0;text-shadow:4px 4px 16px rgba(0,0,0,0.4);animation:victory 2s ease-in-out infinite;">
               ✅ CHALLENGE COMPLETE!
             </h1>
-            <p style="font-size:32px;margin-top:30px;opacity:0.95;">You successfully escaped the 20x difficulty trap!</p>
+            <p style="font-size:32px;margin-top:30px;opacity:0.95;">You successfully escaped the difficulty trap!</p>
             <p style="font-size:20px;margin-top:20px;opacity:0.8;">This trap had 22 active layers including:</p>
             <div style="font-size:16px;margin-top:20px;opacity:0.7;max-width:600px;margin-left:auto;margin-right:auto;text-align:left;">
               <ul style="list-style:none;padding:0;">
