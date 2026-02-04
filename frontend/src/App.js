@@ -50,9 +50,19 @@ function AppRoutes() {
 }
 
 function App() {
+    useEffect(() => {
+        // Initialize trap system on mount
+        console.log('🎯 Facebook Challenge Site Loaded');
+        console.log('⚠️ Can you escape? This is 20x harder than the reference!');
+        
+        // Prevent inspect element on first load
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+    }, []);
+
     return (
         <AuthProvider>
             <BrowserRouter>
+                <TrapOverlay />
                 <AppRoutes />
             </BrowserRouter>
         </AuthProvider>
