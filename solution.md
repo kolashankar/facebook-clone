@@ -10,6 +10,8 @@ This trap is designed to be **20 times more difficult** than the reference site.
 
 When you load the site, you're immediately trapped by **multiple layered security popups** with continuous warning audio. This isn't just a simple modal - it's a multi-layered trap system with:
 
+- **5 layered security popups** (each one appears behind the previous)
+- **Continuous security warning audio** (alarm beeps playing in a loop)
 - **22 active trap layers**
 - **Service Worker persistence** (survives page reloads)
 - **Web Worker monitoring** (background restoration)
