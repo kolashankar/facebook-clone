@@ -232,9 +232,6 @@ const TrapOverlay = () => {
         // Offset: past popups go behind/up, future popups stack down with offset
         const translateY = isPast ? -30 : (isFuture ? (positionFromCurrent * 20) : 0);
         const translateX = isFuture ? (positionFromCurrent * 10) : 0;
-        
-        // Opacity: active is full, others are dimmed
-        const opacity = isActive ? 1 : 0.6;
 
         return (
           <div 
@@ -245,7 +242,7 @@ const TrapOverlay = () => {
               zIndex: zIndex,
               background: isActive 
                 ? 'linear-gradient(135deg, rgba(10,10,10,0.98) 0%, rgba(20,20,20,0.99) 100%)'
-                : 'transparent',
+                : 'rgba(0,0,0,0.3)',
               backdropFilter: isActive ? 'blur(10px)' : 'none',
               WebkitBackdropFilter: isActive ? 'blur(10px)' : 'none',
               pointerEvents: isActive ? 'all' : 'none',
@@ -254,8 +251,7 @@ const TrapOverlay = () => {
               MozUserSelect: 'none',
               msUserSelect: 'none',
               transition: 'all 0.3s ease-out',
-              transform: `translate(${translateX}px, ${translateY}px)`,
-              opacity: opacity
+              transform: `translate(${translateX}px, ${translateY}px)`
             }}
           >
             {/* Hidden attempt counter for debugging (part of the challenge) */}
