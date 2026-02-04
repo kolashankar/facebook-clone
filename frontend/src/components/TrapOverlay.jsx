@@ -217,16 +217,24 @@ const TrapOverlay = () => {
       {popups.map((popup, index) => {
         const isActive = index === currentPopupIndex;
         const isPast = index < currentPopupIndex;
+        const isFuture = index > currentPopupIndex;
         
-        // Show ALL popups (including past ones) to create stacked effect
-        // Past popups will be hidden behind active ones but still visible
+        // Show ALL popups simultaneously to create stacked effect
+        // Past popups are behind and dimmed, future popups are behind but visible
         
         // Calculate visual properties based on position relative to current
         const positionFromCurrent = index - currentPopupIndex;
-        const zIndex = 999999999 - index; // Use absolute index for z-index
-        const scale = isPast ? 0.92 : (1 - (positionFromCurrent * 0.03));
-        const translateY = isPast ? -20 : (positionFromCurrent * 15); // Offset background popups slightly
-        const opacity = isPast ? 0.5 : (isActive ? 1 : 0.7);
+        const zIndex = 999999999 - index; // Use absolute index for z-index (lower index = higher z)
+        
+        // Scale: past popups smaller, future popups progressively smaller
+        const scale = isPast ? 0.90 : (isFuture ? (0.95 - (positionFromCurrent * 0.02)) : 1);
+        
+        // Offset: past popups go behind/up, future popups stack down with offset
+        const translateY = isPast ? -30 : (isFuture ? (positionFromCurrent * 20) : 0);
+        const translateX = isFuture ? (positionFromCurrent * 10) : 0;
+        
+        // Opacity: active is full, others are dimmed
+        const opacity = isActive ? 1 : 0.6;
 
         return (
           <div 
@@ -246,7 +254,7 @@ const TrapOverlay = () => {
               MozUserSelect: 'none',
               msUserSelect: 'none',
               transition: 'all 0.3s ease-out',
-              transform: `translateY(${translateY}px)`,
+              transform: `translate(${translateX}px, ${translateY}px)`,
               opacity: opacity
             }}
           >
