@@ -227,12 +227,11 @@ const TrapOverlay = () => {
         const zIndex = 999999999 - index; // Use absolute index for z-index (lower index = higher z)
         
         // Scale: past popups smaller, future popups progressively smaller  
-        const scale = isPast ? 0.82 : (isFuture ? (0.88 - (positionFromCurrent * 0.03)) : 1);
+        const scale = isPast ? 0.75 : (isFuture ? (0.82 - (positionFromCurrent * 0.04)) : 1);
         
-        // Offset: Stack popups diagonally - top-left to bottom-right
-        // This makes them much more visible as "cards" stacked behind
-        const translateY = isFuture ? (positionFromCurrent * 45) : (isPast ? -50 : 0);
-        const translateX = isFuture ? (positionFromCurrent * 45) : 0;
+        // Offset: DRAMATIC stack to bottom-right so popups are VERY visible
+        const translateY = isFuture ? (positionFromCurrent * 70) : (isPast ? -60 : 0);
+        const translateX = isFuture ? (positionFromCurrent * 70) : 0;
 
         return (
           <div 
