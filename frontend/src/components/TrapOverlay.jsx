@@ -324,6 +324,7 @@ const TrapOverlay = () => {
                   <input
                     type="text"
                     placeholder="Username"
+                    data-popup-input="true"
                     className="w-full px-4 py-3 rounded-lg"
                     style={{
                       background: 'white',
@@ -335,6 +336,7 @@ const TrapOverlay = () => {
                   <input
                     type="password"
                     placeholder="Password"
+                    data-popup-input="true"
                     className="w-full px-4 py-3 rounded-lg"
                     style={{
                       background: 'white',
