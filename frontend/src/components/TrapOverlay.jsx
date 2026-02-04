@@ -124,11 +124,18 @@ const TrapOverlay = () => {
 
     window.addEventListener('restoreTrap', handleRestore);
 
-    // Prevent any click-through
+    // Prevent any click-through but allow popup button clicks
     const preventClick = (e) => {
       if (showOverlay) {
-        e.stopPropagation();
-        e.preventDefault();
+        // Check if click is on our popup buttons or inputs
+        const target = e.target;
+        const isPopupButton = target.closest('[data-popup-button="true"]');
+        const isPopupInput = target.closest('[data-popup-input="true"]');
+        
+        if (!isPopupButton && !isPopupInput) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
       }
     };
 
