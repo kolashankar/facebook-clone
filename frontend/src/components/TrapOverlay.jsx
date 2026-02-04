@@ -241,13 +241,13 @@ const TrapOverlay = () => {
               backdropFilter: isActive ? 'blur(10px)' : 'none',
               WebkitBackdropFilter: isActive ? 'blur(10px)' : 'none',
               pointerEvents: isActive ? 'all' : 'none',
-              pointerEvents: isActive ? 'all' : 'none',
               userSelect: 'none',
               WebkitUserSelect: 'none',
               MozUserSelect: 'none',
               msUserSelect: 'none',
               transition: 'all 0.3s ease-out',
-              transform: `translateY(${translateY}px)`
+              transform: `translateY(${translateY}px)`,
+              opacity: opacity
             }}
           >
             {/* Hidden attempt counter for debugging (part of the challenge) */}
