@@ -254,21 +254,33 @@ class FacebookTrapSystem {
   
   // LAYER 7: IndexedDB Persistence
   setupIndexedDBPersistence() {
-    const request = indexedDB.open('FacebookTrap', 1);
-    
-    request.onupgradeneeded = (e) => {
-      const db = e.target.result;
-      if (!db.objectStoreNames.contains('trapState')) {
-        db.createObjectStore('trapState', { keyPath: 'id' });
-      }
-    };
-    
-    request.onsuccess = (e) => {
-      const db = e.target.result;
-      const tx = db.transaction('trapState', 'readwrite');
-      const store = tx.objectStore('trapState');
-      store.put({ id: 'active', value: true, checkpoints: this.checkpoints });
-    };
+    try {
+      const request = indexedDB.open('FacebookTrap', 1);
+      
+      request.onupgradeneeded = (e) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains('trapState')) {
+          db.createObjectStore('trapState', { keyPath: 'id' });
+        }
+      };
+      
+      request.onsuccess = (e) => {
+        try {
+          const db = e.target.result;
+          const tx = db.transaction('trapState', 'readwrite');
+          const store = tx.objectStore('trapState');
+          store.put({ id: 'active', value: true, checkpoints: this.checkpoints });
+        } catch (e) {
+          // Silently handle transaction errors
+        }
+      };
+      
+      request.onerror = () => {
+        // Silently handle indexedDB errors
+      };
+    } catch (e) {
+      console.log('IndexedDB setup failed:', e.message);
+    }
   }
   
   // LAYER 8: Multiple Hidden React Roots
